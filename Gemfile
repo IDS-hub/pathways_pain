@@ -14,6 +14,7 @@ gem 'bcrypt', '~> 3.1.7'
 gem 'administrate'
 gem 'administrate-field-password'
 gem 'active_model_serializers', '~> 0.10.0'
+gem 'active_interaction', '~> 3.5'
 
 group :development, :test do
   gem 'pry-byebug'
