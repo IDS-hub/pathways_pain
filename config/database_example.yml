@@ -1,0 +1,16 @@
+default: &default
+  adapter: postgresql
+  encoding: unicode
+  pool: 5
+
+development:
+  <<: *default
+  database: pathways_pain_development
+
+test:
+  <<: *default
+  database: pathways_pain_test
+
+production:
+  <<: *default
+  database: pathways_pain_production
