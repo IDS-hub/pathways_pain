@@ -9,6 +9,10 @@ class Api::V1::ProfilesController < Api::V1::ApplicationController
     render_response(Api::V1::Profile::Create, profile_params, { serializer: Api::V1::ProfileSerializer })
   end
 
+  def update
+    render_response(Api::V1::Profile::Update, profile_params, { serializer: Api::V1::ProfileSerializer })
+  end
+
   private
 
   def profile_params
