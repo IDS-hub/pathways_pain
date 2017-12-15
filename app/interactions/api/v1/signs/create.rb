@@ -3,7 +3,7 @@ class Api::V1::Signs::Create < ActiveInteraction::Base
   string :password
 
   validate do
-    errors.add(:user, 'invalid email or password') unless logging_user.present? && logging_user.password == password
+    errors.add(:user, 'invalid email or password') unless logging_user.present? && logging_user.match_password(password)
   end
 
   def execute

@@ -6,14 +6,11 @@ class Api::V1::Profile::Create < BaseInteraction
   string :password
   string :password_confirmation
 
-  validate do
-    errors.add(:base, 'password did not match with password confirmation') if password != password_confirmation
-  end
+  validates :password, confirmation: true, length: { within: 6..40 }
 
   def execute
-    new_user = User.new(inputs.except(:current_user))
-    salt = BCrypt::Engine.generate_salt
-    new_user.encrypted_password = BCrypt::Engine.hash_secret(password, salt)
+    new_user = User.new(inputs.except(*[:current_user, :password, :password_confirmation]))
+    new_user.set_password(password)
     return errors.add(:base, new_user.errors.full_messages.to_sentence) unless new_user.save
     new_user
   end

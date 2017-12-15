@@ -1,7 +1,12 @@
 class User < ApplicationRecord
-  attr_accessor :password
+  validates :email, :encrypted_password, :salt, presence: true, uniqueness: true
 
-  validates :email, presence: true, uniqueness: true
-  validates :password, presence: true, confirmation: true, length: { within: 6..40 }, on: :create
-  validates :password, confirmation: true, length: { within: 6..40 }, allow_blank: true, on: :update
+  def match_password(login_password)
+    encrypted_password == BCrypt::Engine.hash_secret(login_password, salt)
+  end
+
+  def set_password(password)
+    new_salt = BCrypt::Engine.generate_salt
+    self.assign_attributes(salt: new_salt, encrypted_password: BCrypt::Engine.hash_secret(password, new_salt))
+  end
 end

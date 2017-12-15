@@ -1,23 +1,19 @@
 class Api::V1::Profile::Update < BaseInteraction
-  string :first_name, default: nil
-  string :last_name, default: nil
-  string :email, default: nil
-  string :password, default: nil
-  string :password_confirmation, default: nil
 
-  validate do
-    if given?(:password)
-      errors.add(:base, 'password can not be blank') if password.empty?
-      errors.add(:base, 'password did not match with password confirmation') if password != password_confirmation
-    end
-    errors.add(:base, 'email can not be blank') if given?(:email) && email.empty?
+  with_options default: nil do
+    string :first_name
+    string :last_name
+    string :email
+    string :password
+    string :password_confirmation
   end
+
+  validates :password, confirmation: true, length: { within: 6..40 }, allow_blank: true
 
   def execute
     params_for_update = inputs.compact.except!(:current_user)
     if given?(:password)
-      salt = BCrypt::Engine.generate_salt
-      current_user.encrypted_password = BCrypt::Engine.hash_secret(password, salt)
+      current_user.set_password(password)
       params_for_update.except!(*[:password, :password_confirmation])
     end
     current_user.assign_attributes(params_for_update)
