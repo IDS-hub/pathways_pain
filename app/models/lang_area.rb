@@ -1,2 +1,0 @@
-class LangArea < ApplicationRecord
-end

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171220154833) do
+ActiveRecord::Schema.define(version: 20171220161109) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -20,17 +20,6 @@ ActiveRecord::Schema.define(version: 20171220154833) do
     t.boolean "is_deleted", default: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-  end
-
-  create_table "lang_areas", force: :cascade do |t|
-    t.string "name"
-    t.string "enum"
-    t.bigint "area_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.bigint "sessions_id"
-    t.index ["area_id"], name: "index_lang_areas_on_area_id"
-    t.index ["sessions_id"], name: "index_lang_areas_on_sessions_id"
   end
 
   create_table "pain_areas", force: :cascade do |t|
@@ -74,6 +63,7 @@ ActiveRecord::Schema.define(version: 20171220154833) do
     t.boolean "is_deleted", default: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "lang", default: 0
     t.index ["areas_id"], name: "index_sessions_on_areas_id"
     t.index ["position"], name: "index_sessions_on_position", unique: true
   end
@@ -92,8 +82,6 @@ ActiveRecord::Schema.define(version: 20171220154833) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
-  add_foreign_key "lang_areas", "areas"
-  add_foreign_key "lang_areas", "sessions", column: "sessions_id"
   add_foreign_key "pain_areas", "areas", column: "areas_id"
   add_foreign_key "pain_areas", "pains", column: "pains_id"
   add_foreign_key "pain_areas", "users", column: "users_id"
