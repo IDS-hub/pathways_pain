@@ -1,7 +1,7 @@
 FactoryBot.define do
   factory :session_history do
-    user nil
-    session nil
+    user
+    session
     is_completed false
   end
 end

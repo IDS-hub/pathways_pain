@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171220161109) do
+ActiveRecord::Schema.define(version: 20171220171448) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -29,6 +29,7 @@ ActiveRecord::Schema.define(version: 20171220161109) do
     t.boolean "is_deleted", default: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "pain_level"
     t.index ["areas_id"], name: "index_pain_areas_on_areas_id"
     t.index ["pains_id"], name: "index_pain_areas_on_pains_id"
     t.index ["users_id"], name: "index_pain_areas_on_users_id"
@@ -49,6 +50,7 @@ ActiveRecord::Schema.define(version: 20171220161109) do
     t.boolean "is_completed", default: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "pain_level"
     t.index ["session_id"], name: "index_session_histories_on_session_id"
     t.index ["user_id"], name: "index_session_histories_on_user_id"
   end
@@ -65,7 +67,6 @@ ActiveRecord::Schema.define(version: 20171220161109) do
     t.datetime "updated_at", null: false
     t.integer "lang", default: 0
     t.index ["areas_id"], name: "index_sessions_on_areas_id"
-    t.index ["position"], name: "index_sessions_on_position", unique: true
   end
 
   create_table "users", force: :cascade do |t|
