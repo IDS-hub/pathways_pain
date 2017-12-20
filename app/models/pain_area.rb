@@ -1,0 +1,2 @@
+class PainArea < ApplicationRecord
+end
