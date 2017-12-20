@@ -19,6 +19,11 @@ gem 'active_interaction', '~> 3.5'
 group :development, :test do
   gem 'pry-byebug'
   gem 'pry-rails'
+
+  gem 'rspec-rails'
+  gem 'factory_bot_rails'
+  gem 'database_cleaner'
+  gem 'faker'
 end
 
 group :development do

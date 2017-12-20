@@ -3,7 +3,7 @@ class Api::V1::Password::Update < BaseInteraction
   string :reset_password_token
 
   validate do
-    errors.add(:base, 'Can not reset password. Please try again') if user.blank?
+    errors.add(:base, I18n.t('interactions.password.reset_error')) if user.blank?
   end
 
   def execute

@@ -3,11 +3,11 @@ class Api::V1::Signs::Create < ActiveInteraction::Base
   string :password
 
   validate do
-    errors.add(:user, 'invalid email or password') unless logging_user.present? && logging_user.match_password(password)
+    errors.add(:user, I18n.t('interactions.signs.wrong_credentials')) unless logging_user.present? && logging_user.password_valid?(password)
   end
 
   def execute
-    errors.add(:user, 'authentication failed!') unless logging_user.update(access_token: SecureRandom.hex(6))
+    errors.add(:user, I18n.t('interactions.signs.auth_failed')) unless logging_user.update(access_token: SecureRandom.hex(6))
     logging_user
   end
 

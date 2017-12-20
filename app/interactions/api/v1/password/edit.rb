@@ -3,7 +3,7 @@ class Api::V1::Password::Edit < BaseInteraction
   string :email
 
   validate do
-    errors.add(:base, "Can't find any users with this email") if user.blank?
+    errors.add(:base, I18n.t('interactions.password.no_user')) if user.blank?
   end
 
   def execute
