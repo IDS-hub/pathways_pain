@@ -1,5 +1,7 @@
 class Pain < ApplicationRecord
+	include IsDeletedScoping
+
 	has_many :pain_areas
 
-	validate :name, presence: true
+	validates :name, presence: true
 end

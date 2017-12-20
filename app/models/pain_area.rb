@@ -1,4 +1,6 @@
 class PainArea < ApplicationRecord
+	include IsDeletedScoping
+
 	belongs_to :pain
 	belongs_to :area
 	belongs_to :user

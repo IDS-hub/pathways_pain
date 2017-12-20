@@ -1,4 +1,6 @@
 class Session < ApplicationRecord
+	include IsDeletedScoping
+
 	belongs_to :user
 	belongs_to :session
 
