@@ -10,38 +10,16 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171220171448) do
+ActiveRecord::Schema.define(version: 20171220161109) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
-  create_table "areas", force: :cascade do |t|
+  create_table "pain_causes", force: :cascade do |t|
     t.string "name"
     t.boolean "is_deleted", default: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-  end
-
-  create_table "pain_areas", force: :cascade do |t|
-    t.bigint "areas_id"
-    t.bigint "pains_id"
-    t.bigint "users_id"
-    t.boolean "is_deleted", default: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.integer "pain_level"
-    t.index ["areas_id"], name: "index_pain_areas_on_areas_id"
-    t.index ["pains_id"], name: "index_pain_areas_on_pains_id"
-    t.index ["users_id"], name: "index_pain_areas_on_users_id"
-  end
-
-  create_table "pains", force: :cascade do |t|
-    t.string "name"
-    t.bigint "users_id"
-    t.boolean "is_deleted", default: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["users_id"], name: "index_pains_on_users_id"
   end
 
   create_table "session_histories", force: :cascade do |t|
@@ -50,7 +28,6 @@ ActiveRecord::Schema.define(version: 20171220171448) do
     t.boolean "is_completed", default: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.integer "pain_level"
     t.index ["session_id"], name: "index_session_histories_on_session_id"
     t.index ["user_id"], name: "index_session_histories_on_user_id"
   end
@@ -61,12 +38,23 @@ ActiveRecord::Schema.define(version: 20171220171448) do
     t.string "media_link"
     t.integer "position"
     t.integer "media_duration_sec"
-    t.bigint "areas_id"
+    t.bigint "pain_causes_id"
     t.boolean "is_deleted", default: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "lang", default: 0
-    t.index ["areas_id"], name: "index_sessions_on_areas_id"
+    t.index ["pain_causes_id"], name: "index_sessions_on_pain_causes_id"
+  end
+
+  create_table "user_pain_causes", force: :cascade do |t|
+    t.bigint "pain_causes_id"
+    t.bigint "users_id"
+    t.integer "pain_level"
+    t.boolean "is_deleted", default: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["pain_causes_id"], name: "index_user_pain_causes_on_pain_causes_id"
+    t.index ["users_id"], name: "index_user_pain_causes_on_users_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -83,11 +71,9 @@ ActiveRecord::Schema.define(version: 20171220171448) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
-  add_foreign_key "pain_areas", "areas", column: "areas_id"
-  add_foreign_key "pain_areas", "pains", column: "pains_id"
-  add_foreign_key "pain_areas", "users", column: "users_id"
-  add_foreign_key "pains", "users", column: "users_id"
   add_foreign_key "session_histories", "sessions"
   add_foreign_key "session_histories", "users"
-  add_foreign_key "sessions", "areas", column: "areas_id"
+  add_foreign_key "sessions", "pain_causes", column: "pain_causes_id"
+  add_foreign_key "user_pain_causes", "pain_causes", column: "pain_causes_id"
+  add_foreign_key "user_pain_causes", "users", column: "users_id"
 end

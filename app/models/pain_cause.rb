@@ -1,9 +1,8 @@
-class Area < ApplicationRecord
+class PainCause < ApplicationRecord
 	include IsDeletedScoping
 
-	has_many :pain_areas # has many throuh?
-
 	has_many :sessions
+	has_many :user_pain_causes
 
 	validates :name, presence: true
 end

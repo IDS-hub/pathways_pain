@@ -1,6 +1,6 @@
-class CreateAreas < ActiveRecord::Migration[5.1]
+class CreatePainCauses < ActiveRecord::Migration[5.1]
   def change
-    create_table :areas do |t|
+    create_table :pain_causes do |t|
     	t.string :name, nullable: false
     	t.boolean :is_deleted, default: false
       t.timestamps
