@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171220161109) do
+ActiveRecord::Schema.define(version: 20171221102153) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -32,18 +32,26 @@ ActiveRecord::Schema.define(version: 20171220161109) do
     t.index ["user_id"], name: "index_session_histories_on_user_id"
   end
 
+  create_table "session_lists", force: :cascade do |t|
+    t.string "name"
+    t.bigint "pain_causes_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["pain_causes_id"], name: "index_session_lists_on_pain_causes_id"
+  end
+
   create_table "sessions", force: :cascade do |t|
     t.string "name"
     t.text "session_text"
     t.string "media_link"
     t.integer "position"
     t.integer "media_duration_sec"
-    t.bigint "pain_causes_id"
     t.boolean "is_deleted", default: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "lang", default: 0
-    t.index ["pain_causes_id"], name: "index_sessions_on_pain_causes_id"
+    t.bigint "session_lists_id"
+    t.index ["session_lists_id"], name: "index_sessions_on_session_lists_id"
   end
 
   create_table "user_pain_causes", force: :cascade do |t|
@@ -73,7 +81,8 @@ ActiveRecord::Schema.define(version: 20171220161109) do
 
   add_foreign_key "session_histories", "sessions"
   add_foreign_key "session_histories", "users"
-  add_foreign_key "sessions", "pain_causes", column: "pain_causes_id"
+  add_foreign_key "session_lists", "pain_causes", column: "pain_causes_id"
+  add_foreign_key "sessions", "session_lists", column: "session_lists_id"
   add_foreign_key "user_pain_causes", "pain_causes", column: "pain_causes_id"
   add_foreign_key "user_pain_causes", "users", column: "users_id"
 end

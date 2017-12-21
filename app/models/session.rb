@@ -2,7 +2,7 @@ class Session < ApplicationRecord
 	include IsDeletedScoping
 
 	belongs_to :user
-	belongs_to :session
+	belongs_to :session_list
 
 	enum lang: [:en]
 
