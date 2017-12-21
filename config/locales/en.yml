@@ -1,5 +1,6 @@
 en:
   hello: "Hello world"
+  not_found: "Not found"
   interactions:
     password:
       no_user: "Can't find any users with this email"

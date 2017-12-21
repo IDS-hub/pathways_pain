@@ -21,7 +21,6 @@ class Api::V1::ApplicationController < ActionController::Base
     render result
   end
 
-  # todo: make it railse error and handle it
   def authenticate_api_user
     return nil if request.headers['Access-Token'].blank?
     @current_user ||= User.find_by(access_token: request.headers['Access-Token'])

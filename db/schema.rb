@@ -34,10 +34,10 @@ ActiveRecord::Schema.define(version: 20171221102153) do
 
   create_table "session_lists", force: :cascade do |t|
     t.string "name"
-    t.bigint "pain_causes_id"
+    t.bigint "pain_cause_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["pain_causes_id"], name: "index_session_lists_on_pain_causes_id"
+    t.index ["pain_cause_id"], name: "index_session_lists_on_pain_cause_id"
   end
 
   create_table "sessions", force: :cascade do |t|
@@ -81,7 +81,7 @@ ActiveRecord::Schema.define(version: 20171221102153) do
 
   add_foreign_key "session_histories", "sessions"
   add_foreign_key "session_histories", "users"
-  add_foreign_key "session_lists", "pain_causes", column: "pain_causes_id"
+  add_foreign_key "session_lists", "pain_causes"
   add_foreign_key "sessions", "session_lists", column: "session_lists_id"
   add_foreign_key "user_pain_causes", "pain_causes", column: "pain_causes_id"
   add_foreign_key "user_pain_causes", "users", column: "users_id"

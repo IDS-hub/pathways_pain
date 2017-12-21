@@ -5,6 +5,14 @@ class BaseInteraction < ActiveInteraction::Base
     valid? ? [result, :ok] : [errors, :unprocessable_entity]
   end
 
+  protected
+
+  def find_resource
+ 		resource = yield
+ 		errors.add(:resource, I18n.t(:not_found)) unless resource
+ 		resource
+  end
+
   private
 
   def merge_errors!(other_errors)
