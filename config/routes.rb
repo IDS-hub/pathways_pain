@@ -10,7 +10,7 @@ Rails.application.routes.draw do
       resource :signs, only: [:create, :destroy]
 
       resource :profile, only: [:show, :create, :update] do
-        resources :session_histories, only: [:index, :show]
+        resources :session_histories, only: [:index, :show, :create]
         resources :user_pain_causes
       end
 

@@ -1,7 +1,7 @@
 class Session < ApplicationRecord
 	include IsDeletedScoping
 
-	belongs_to :pain_causes
+	belongs_to :pain_cause
 	has_many :session_histories
 
 	enum lang: [:en]

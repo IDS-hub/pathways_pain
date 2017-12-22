@@ -1,4 +1,4 @@
-class Api::V1::UserPainCauses::Destroy < BaseInteraction
+class Api::V1::UserPainCause::Destroy < BaseInteraction
 	integer :id
 
 	def execute

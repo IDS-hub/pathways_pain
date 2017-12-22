@@ -17,19 +17,16 @@ class Api::V1::SessionHistoriesController < Api::V1::ApplicationController
 
 	# creates for current_user by default
 	def create
-		render_response(
+		create_resource(
 			Api::V1::SessionHistory::Create,
-			session_history_params,
-			{ serializer: Api::V1::SessionHistorySerializer }
+			Api::V1::SessionHistorySerializer,
+			session_history_params
 		)
 	end
 
 	private
 
 	def session_history_params
-		jsonapi_parse(
-			params,
-			only: %(id pain_level user_id)
-		)
+		params.permit(:id, :pain_level, :session_id)
 	end
 end

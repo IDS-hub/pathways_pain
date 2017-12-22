@@ -15,7 +15,3 @@ class Api::V1::Profile::Create < BaseInteraction
     new_user
   end
 end
-
-
-
-

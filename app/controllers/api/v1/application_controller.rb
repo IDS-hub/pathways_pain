@@ -25,4 +25,24 @@ class Api::V1::ApplicationController < ActionController::Base
     return nil if request.headers['Access-Token'].blank?
     @current_user ||= User.find_by(access_token: request.headers['Access-Token'])
   end
+
+  # todo: refactor as service
+  def create_resource(interaction, serializer, eval_params, error_serializer = nil)
+    error_serializer ||= Api::V1::ErrorSerializer
+
+    params_with_user = eval_params.merge(current_user: @current_user)
+    interaction_res = interaction.run(params_with_user)
+
+    res_hash = {
+      true => lambda do
+        render json: serializer.new(interaction_res.result), status: :ok
+      end,
+
+      false => lambda do
+        render json: error_serializer.serialize(interaction_res.errors, :unprocessable_entity)
+      end
+    }
+
+    res_hash[!!interaction_res.valid?].call
+  end
 end

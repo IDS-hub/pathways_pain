@@ -7,7 +7,7 @@ class CreateSessions < ActiveRecord::Migration[5.1]
     	t.integer :position, nullable: false
     	t.integer :media_duration_sec
 
-    	t.references :pain_causes, index: true, foreign_key: true
+    	t.references :pain_cause, index: true, foreign_key: true
     	t.boolean :is_deleted, default: false
     	
       t.timestamps

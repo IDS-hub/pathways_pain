@@ -3,4 +3,5 @@ class SessionHistory < ApplicationRecord
   belongs_to :session
 
   validates :pain_level, numericality: pain_level_validate_opts
+  validates :user, :session, presence: true
 end

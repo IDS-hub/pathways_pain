@@ -1,4 +1,4 @@
-class Api::V1::UserPainCauses::Show < BaseInteraction
+class Api::V1::UserPainCause::Show < BaseInteraction
 	integer :id
 
 	def execute

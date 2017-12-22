@@ -1,8 +1,9 @@
 class Api::V1::Session::Index < BaseInteraction
-	string :session_type
+	string :session_type, default: nil
+	integer :pain_cause_id
 
 	def execute
-		resource = ::Session.all
+		resource = ::Session.where(pain_cause_id: pain_cause_id)
 
 		case session_type
 		when :feel_good

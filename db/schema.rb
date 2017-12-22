@@ -43,19 +43,19 @@ ActiveRecord::Schema.define(version: 20171222134725) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "lang", default: 0
-    t.bigint "pain_causes_id"
-    t.index ["pain_causes_id"], name: "index_sessions_on_pain_causes_id"
+    t.bigint "pain_cause_id"
+    t.index ["pain_cause_id"], name: "index_sessions_on_pain_cause_id"
   end
 
   create_table "user_pain_causes", force: :cascade do |t|
-    t.bigint "pain_causes_id"
-    t.bigint "users_id"
+    t.bigint "pain_cause_id"
+    t.bigint "user_id"
     t.integer "pain_level"
     t.boolean "is_deleted", default: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["pain_causes_id"], name: "index_user_pain_causes_on_pain_causes_id"
-    t.index ["users_id"], name: "index_user_pain_causes_on_users_id"
+    t.index ["pain_cause_id"], name: "index_user_pain_causes_on_pain_cause_id"
+    t.index ["user_id"], name: "index_user_pain_causes_on_user_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -74,7 +74,7 @@ ActiveRecord::Schema.define(version: 20171222134725) do
 
   add_foreign_key "session_histories", "sessions"
   add_foreign_key "session_histories", "users"
-  add_foreign_key "sessions", "pain_causes", column: "pain_causes_id"
-  add_foreign_key "user_pain_causes", "pain_causes", column: "pain_causes_id"
-  add_foreign_key "user_pain_causes", "users", column: "users_id"
+  add_foreign_key "sessions", "pain_causes"
+  add_foreign_key "user_pain_causes", "pain_causes"
+  add_foreign_key "user_pain_causes", "users"
 end
