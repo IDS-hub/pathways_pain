@@ -1,7 +1,7 @@
 class PainCause < ApplicationRecord
 	include IsDeletedScoping
 
-	has_many :session_lists, dependent: :destroy
+	has_many :sessions, dependent: :destroy
 
 	validates :name, presence: true
 end
