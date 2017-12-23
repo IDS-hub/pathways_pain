@@ -26,12 +26,11 @@ class Api::V1::ApplicationController < ActionController::Base
     @current_user ||= User.find_by(access_token: request.headers['Access-Token'])
   end
 
-  # todo: refactor as service
-  def create_resource(interaction, serializer, eval_params, error_serializer = nil)
+  def change_resource(interaction, serializer, eval_params, error_serializer = nil)
     error_serializer ||= Api::V1::ErrorSerializer
 
     params_with_user = eval_params.merge(current_user: @current_user)
-    interaction_res = interaction.run(params_with_user)
+    interaction_res  = interaction.run(params_with_user)
 
     res_hash = {
       true => lambda do

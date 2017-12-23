@@ -10,7 +10,7 @@ class Api::V1::SessionHistory::Create < BaseInteraction
 		history.pain_level = pain_level
 		history.session_id = session_id
 
-		# add to each field
+		# todo: add to each field
 		if history.save
 			history
 		else
