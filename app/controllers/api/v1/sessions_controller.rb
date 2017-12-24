@@ -2,8 +2,7 @@ class Api::V1::SessionsController < Api::V1::ApplicationController
 	def index
 		render_response(
 			Api::V1::Session::Index,
-			session_params,
-			{ serializer: Api::V1::SessionSerializer }
+			session_params
 		)
 	end
 

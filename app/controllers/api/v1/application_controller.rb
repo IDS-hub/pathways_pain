@@ -30,7 +30,7 @@ class Api::V1::ApplicationController < ActionController::Base
     @current_user ||= User.find_by(access_token: request.headers['Access-Token'])
   end
 
-  # todo: make it more readable, service; handle errors fields
+  # todo: make it more readable, service
   def change_resource(interaction, serializer, eval_params, error_serializer = nil)
     error_serializer ||= Api::V1::ErrorSerializer
 
@@ -39,7 +39,13 @@ class Api::V1::ApplicationController < ActionController::Base
 
     res_hash = {
       true => lambda do
-        render json: serializer.new(interaction_res.result), status: :ok
+
+        if serializer
+          render json: serializer.new(interaction_res.result), status: :ok
+        else
+          render json: nil, status: :no_content
+        end
+
       end,
 
       false => lambda do

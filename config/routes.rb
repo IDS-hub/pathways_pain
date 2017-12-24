@@ -11,7 +11,7 @@ Rails.application.routes.draw do
 
       resource :profile, only: [:show, :create, :update] do
         resources :session_histories, only: [:index, :show, :create]
-        resources :user_pain_causes
+        resources :user_pain_causes, except: [:new, :edit]
       end
 
       resource :password, only: [:edit, :update]

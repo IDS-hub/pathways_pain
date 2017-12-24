@@ -1,17 +1,15 @@
 class  Api::V1::UserPainCausesController < Api::V1::ApplicationController
 	def index
 		render_response(
-			Api::V1::UserPainCauses::Index,
-			{},
-			{ serializer: Api::V1::UserPainCausesSerializer }
+			Api::V1::UserPainCause::Index,
+			user_pain_cause_params
 		)
 	end
 
 	def show
 		render_response(
-			Api::V1::UserPainCauses::Show,
-			user_pain_cause_params,
-			{ serializer: Api::V1::UserPainCausesSerializer }
+			Api::V1::UserPainCause::Show,
+			user_pain_cause_params
 		)
 	end
 
@@ -34,7 +32,7 @@ class  Api::V1::UserPainCausesController < Api::V1::ApplicationController
 	def destroy
 		change_resource(
 			Api::V1::UserPainCause::Destroy,
-			Api::V1::UserPainCauseSerializer,
+			nil,
 			user_pain_cause_params
 		)
 	end
@@ -42,6 +40,6 @@ class  Api::V1::UserPainCausesController < Api::V1::ApplicationController
 	private
 
 	def user_pain_cause_params
-		params.permit(:id, :pain_causes_id, :pain_level)
+		params.permit(:id, :pain_cause_id, :pain_level)
 	end
 end
