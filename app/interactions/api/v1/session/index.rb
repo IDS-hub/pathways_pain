@@ -6,10 +6,10 @@ class Api::V1::Session::Index < BaseInteraction
 		resource = ::Session.where(pain_cause_id: pain_cause_id)
 
 		case session_type
-		when :feel_good
-			resource.feel_good(current_user)
-		else
-			resource
+		when "feel_good"
+			resource = resource.feel_good(current_user.id)
 		end
+
+		resource.order(name: :asc)
 	end
 end

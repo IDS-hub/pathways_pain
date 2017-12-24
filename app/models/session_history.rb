@@ -6,4 +6,5 @@ class SessionHistory < ApplicationRecord
   validates :user, :session, presence: true
 
   delegate :pain_cause_id, to: :session
+  delegate :media_duration_sec, to: :session
 end

@@ -3,7 +3,7 @@ class Api::V1::SessionsController < Api::V1::ApplicationController
 		render_response(
 			Api::V1::Session::Index,
 			session_params,
-			{ serializer: Api::V1::SessionsSerializer }
+			{ serializer: Api::V1::SessionSerializer }
 		)
 	end
 
@@ -11,7 +11,7 @@ class Api::V1::SessionsController < Api::V1::ApplicationController
 		render_response(
 			Api::V1::Session::Show,
 			{ id: params[:id] },
-			{ serializer: Api::V1::SessionsSerializer }
+			{ serializer: Api::V1::SessionSerializer }
 		)
 	end
 

@@ -8,12 +8,12 @@ class Session < ApplicationRecord
 
 	validates :name, presence: true, length: { maximum: 200 }
 
-	def self.feel_good(user)
+	def self.feel_good(user_id)
 		includes(:session_histories)
 		.where(
 			session_histories: {
-				pain_level: 0..1,
-				user_id: user.id
+				pain_level: 0..1, # todo: to .settings singleton table
+				user_id: user_id
 			}
 		)
 	end

@@ -1,3 +1,8 @@
 class Api::V1::ProfileSerializer < ActiveModel::Serializer
-  attributes :first_name, :last_name, :email
+  attributes :id,
+  :first_name,
+  :last_name,
+  :email,
+  :access_token,
+  :reset_password_token
 end
