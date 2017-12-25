@@ -7,6 +7,7 @@ class Session < ApplicationRecord
 	enum lang: [:en]
 
 	validates :name, presence: true, length: { maximum: 200 }
+	validates :position, position_validate_opts
 
 	def self.feel_good(user_id)
 		includes(:session_histories)

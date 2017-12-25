@@ -17,7 +17,9 @@ Rails.application.routes.draw do
       resource :password, only: [:edit, :update]
 
       resources :pain_causes, only: [:index, :show] do
-        resources :sessions, only: [:index, :show]
+        resources :sessions, only: [:index, :show] do
+          resources :quizes, only: [:index, :show]
+        end
       end
     end
   end

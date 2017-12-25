@@ -5,5 +5,6 @@ class Api::V1::SessionSerializer < ActiveModel::Serializer
 		:position,
 		:media_duration_sec,
 		:media_link,
-		:pain_cause_id
+		:pain_cause_id,
+		:position
 end

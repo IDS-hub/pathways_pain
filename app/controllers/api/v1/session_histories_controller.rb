@@ -42,7 +42,8 @@ class Api::V1::SessionHistoriesController < Api::V1::ApplicationController
 			:pain_level,
 			:session_id,
 			:is_chart,
-			:pain_cause_id
+			:pain_cause_id,
+			:sort_order
 		)
 	end
 end

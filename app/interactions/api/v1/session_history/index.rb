@@ -1,11 +1,12 @@
 class Api::V1::SessionHistory::Index < BaseInteraction
 	integer :session_id, default: nil
 	integer :pain_cause_id, default: nil
+	string :sort_order, default: "desc"
 
 	def execute
 		resource = ::SessionHistory.where(user: current_user)
 		resource = filter_resource(resource)
-		resource.order(created_at: :desc)
+		resource.order(created_at: sort_order)
 	end
 
 	private
