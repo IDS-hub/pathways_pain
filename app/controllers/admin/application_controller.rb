@@ -1,9 +1,8 @@
 module Admin
   class ApplicationController < Administrate::ApplicationController
-    before_action :authenticate_admin
-
-    def authenticate_admin
-      # TODO Add authentication logic here.
-    end
-  end
+  	http_basic_authenticate_with(
+    	name: ENV["admin_email"],
+    	password: ENV["admin_password"]
+  	)
+	end
 end
