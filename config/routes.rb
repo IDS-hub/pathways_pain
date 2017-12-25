@@ -11,6 +11,10 @@ Rails.application.routes.draw do
     root to: "users#index"
   end
 
+  # no names or namespaces starting with 'admin_'!
+  # administrate gem become to parse them
+  resources :sign_in_admin, only: [:new, :create, :destroy]
+
   namespace :api do
     namespace :v1 do
       resource :signs, only: [:create, :destroy]

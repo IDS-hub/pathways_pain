@@ -1,6 +1,10 @@
 en:
   hello: "Hello world"
   not_found: "Not found"
+  admin_sessions:
+    login_success: "Logged in successfully. Welcome!"
+    wrong_credentials: "Wrong login credentials. Please try again"
+    log_in_before: "Please log in before"
   interactions:
     password:
       no_user: "Can't find any users with this email"
