@@ -31,6 +31,6 @@ class UserDashboard < Administrate::BaseDashboard
   ].freeze
 
   def display_resource(user)
-    "User ##{user.email}"
+    "#{user.to_s} (#{user.email})"
   end
 end

@@ -10,14 +10,4 @@ class ApplicationRecord < ActiveRecord::Base
 	  	only_integer: true
   	}
   end
-
-  def self.position_validate_opts
-  	{
-  		uniqueness: true,
-			presence: true,
-			numericality: {
-				greater_than: 0
-			}
-		}
-  end
 end

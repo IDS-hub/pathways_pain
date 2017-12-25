@@ -2,6 +2,12 @@ Rails.application.routes.draw do
   namespace :admin do
     resources :users
 
+    resources :pain_causes
+    resources :sessions
+    resources :session_histories
+
+    resources :quizzes
+
     root to: "users#index"
   end
 
@@ -24,3 +30,5 @@ Rails.application.routes.draw do
     end
   end
 end
+
+

@@ -1,7 +1,13 @@
 class User < ApplicationRecord
-  validates :email, :encrypted_password, :salt, presence: true, uniqueness: true
+  validates :email, :encrypted_password, :salt,
+    presence: true,
+    uniqueness: true
 
   alias_attribute :password=, :set_password
+
+  def to_s
+    "#{first_name} #{last_name}".strip
+  end
 
   def password_valid?(login_password)
   	return false unless salt.present?

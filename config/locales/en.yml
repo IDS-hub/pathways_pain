@@ -14,3 +14,7 @@ en:
     errors:
       user_pain_cause:
         user_present: "User with id %{user_id} already has pain cause with id %{pain_cause_id}"
+      session:
+        position_not_unique: "Session with position %{position} for %{pain_cause_name} already present"
+      quiz:
+        position_not_unique: "Quiz with position %{position} for session %{session_name} already present"
