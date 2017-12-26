@@ -1,10 +1,13 @@
-User.destroy_all
-PainCause.destroy_all
-
 u = User.new(email: 'profile@test.com', first_name: 'First', last_name: 'Last')
 u.password     = "123123"
 u.access_token = "accesstoken"
 u.save
+
+a = AdminUser.new
+a.first_name = "Admin"
+a.login = "admin@pathways.com"
+a.encrypted_password = '1path3wa$#'
+a.save
 
 pain_condition_names = [
 	"Arteriosclerosis",
@@ -50,16 +53,8 @@ pain_condition_names.each do |cond_name|
 	PainCause.create(name: cond_name)
 end
 
-UserPainCause.create(user: u, pain_cause: PainCause.first)
-3.times { Session.create(name: Faker::Hipster.word, pain_cause: PainCause.first) }
 
-Session.find_each do |session|
-	sess_h = SessionHistory.new
-	sess_h.user_id = u.id
-	sess_h.pain_level = Random.rand(10)
-	sess_h.session_id = session.id
-	sess_h.save
-end
+
 
 
 
