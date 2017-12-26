@@ -1,17 +1,29 @@
 <div class="container">
-  <% flash.each do |key, value| %>
-    <div class="alert alert-<%= key %>"><%= value %></div>
-  <% end %>
+	<div class="row">
+		<div class="col-md-5 offset-md-3 text-center login-title">
+		  <% flash.each do |key, value| %>
+		    <div class="alert alert-<%= key %>"><%= value %></div>
+		  <% end %>
+		</div>
+	 </div>
 </div>
 
-<div>
-	<%= form_tag sign_in_admin_index_path do %>
-		<%= label_tag :login %>
-		<%= text_field_tag :login %>
+<div class="container">
+    <div class="row">
+        <div class="col-md-5 offset-md-3 text-center">
+            <div class="account-wall">
 
-		<%= label_tag :password %>
-		<%= password_field_tag :password %>
+            		<%= form_tag sign_in_admin_index_path do %>
+										<%= label_tag :login %>
+										<%= text_field_tag :login %>
 
-		<%= submit_tag :login %>
-	<%end%>
+										<%= label_tag :password %>
+										<%= password_field_tag :password %>
+
+										<%= submit_tag :login, class: 'btn btn-success' %>
+									<%end%>
+
+            </div>
+        </div>
+    </div>
 </div>

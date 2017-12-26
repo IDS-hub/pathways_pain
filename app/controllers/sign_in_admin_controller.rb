@@ -23,7 +23,7 @@ class SignInAdminController < ApplicationController
 		end
 	end
 
-	def destroy
+	def delete_session
 		session[:admin_auth] = nil
 		render :new
 	end

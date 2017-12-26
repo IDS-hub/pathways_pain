@@ -13,7 +13,9 @@ Rails.application.routes.draw do
 
   # no names or namespaces starting with 'admin_'!
   # administrate gem become to parse them
-  resources :sign_in_admin, only: [:new, :create, :destroy]
+  resources :sign_in_admin, only: [:new, :create] do
+    delete :delete_session, on: :collection
+  end
 
   namespace :api do
     namespace :v1 do
