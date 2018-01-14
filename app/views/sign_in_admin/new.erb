@@ -11,16 +11,28 @@
 <div class="container">
     <div class="row">
         <div class="col-md-5 offset-md-3 text-center">
-            <div class="account-wall">
+            <div class="account-wall group">
 
             		<%= form_tag sign_in_admin_index_path do %>
+            			<div class="group">
 										<%= label_tag :login %>
+									</div>
+
+									<div class="group">
 										<%= text_field_tag :login %>
+									</div>
 
+									<div class="group">
 										<%= label_tag :password %>
-										<%= password_field_tag :password %>
+									</div>
 
-										<%= submit_tag :login, class: 'btn btn-success' %>
+									<div class="group">
+										<%= password_field_tag :password %>
+									</div>
+
+									<div class="group">
+										<%= submit_tag "Sign in", class: 'btn btn-success' %>
+									</div>
 									<%end%>
 
             </div>
