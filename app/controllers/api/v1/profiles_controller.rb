@@ -28,7 +28,7 @@ class Api::V1::ProfilesController < Api::V1::ApplicationController
   def profile_params
     jsonapi_parse(
       params,
-      only: %w[first_name last_name email password password_confirmation]
+      only: %w[first_name last_name email password password_confirmation is_skip_verify]
     )
   end
 end

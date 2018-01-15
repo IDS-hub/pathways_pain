@@ -24,6 +24,8 @@ Rails.application.routes.draw do
       resource :profile, only: [:show, :create, :update] do
         resource :auth_providers, only: [:create, :show]
 
+        resources :validates, only: [:show], param: :confirmation_token
+    
         resources :session_histories, only: [:index, :show, :create]
         resources :user_pain_causes, except: [:new, :edit]
       end
