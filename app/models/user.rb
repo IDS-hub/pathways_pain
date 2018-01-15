@@ -8,6 +8,9 @@ class User < ApplicationRecord
 
   alias_attribute :password=, :set_password
 
+  default_scope { where.not(confirmed_at: nil) }
+  scope :unconfirmed, -> { where(confirmed_at: nil) }
+ 
   def to_s
     "#{first_name} #{last_name}".strip
   end
@@ -46,9 +49,14 @@ class User < ApplicationRecord
     encrypted_password == hash_password(login_password, salt)
   end
 
+  # todo: check zus
   def set_password(password)
-		self.salt = new_salt
-  	self.assign_attributes(encrypted_password: hash_password(password, salt))
+		salt = new_salt
+
+  	self.assign_attributes(
+      encrypted_password: hash_password(password, salt),
+      salt: salt
+    )
   end
 
   private
