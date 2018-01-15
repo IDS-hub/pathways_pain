@@ -8,6 +8,8 @@ class Api::V1::Profile::Create < BaseInteraction
 
   validates :password, confirmation: true, length: { within: 6..40 }
 
+  # todo: add email confirmation
+  # todo: check reset password
   def execute
     new_user = User.new(inputs.except(*[:current_user, :password, :password_confirmation]))
     new_user.set_password(password)

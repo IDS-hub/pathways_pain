@@ -14,6 +14,13 @@ en:
     signs:
       wrong_credentials: "Invalid email or password"
       auth_failed: "Authentication failed!"
+    registrations:
+      wrong_provider: "No such provider with name %{provider_name}"
+      wrong_credentials: "Wrong user credentials"
+      wrong_provider_credentials: "Wrong provider credentials. Please fill in %{parameters} parameters"
+      wrong_login: "Invalid user login"
+      invalid_provider_token: "Invalid token for provider: %{provider_name}"
+      passwords_not_match: "Password and password confirmation did not match"
   activerecord:
     errors:
       user_pain_cause:

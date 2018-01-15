@@ -1,8 +1,10 @@
+require 'net/http'
+
 class HttpCallService
 	class << self
 		def call(uri_string, method: :get)
 			begin
-				public_send("#{method}_call", uri_string)
+				send("#{method}_call", uri_string)
 			rescue NameError
 				nil
 			end
@@ -18,7 +20,7 @@ class HttpCallService
 			http.use_ssl = true
 		  http.verify_mode = OpenSSL::SSL::VERIFY_NONE
 
-			req = Net::HTTP::Get.new(uri, headers)
+			req = Net::HTTP::Get.new(uri)
 
 			http.request(req) 
 		end

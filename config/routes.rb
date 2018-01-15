@@ -22,6 +22,8 @@ Rails.application.routes.draw do
       resource :signs, only: [:create, :destroy]
 
       resource :profile, only: [:show, :create, :update] do
+        resource :auth_providers, only: :create
+
         resources :session_histories, only: [:index, :show, :create]
         resources :user_pain_causes, except: [:new, :edit]
       end
