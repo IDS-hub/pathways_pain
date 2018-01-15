@@ -2,6 +2,8 @@ class UsersAuthProvider < ApplicationRecord
 	belongs_to :user
 	belongs_to :auth_provider
 
+	delegate :name, to: :auth_provider, prefix: :provider
+
 	validates :provider_access_token,
 		uniqueness: true,
 		presence: true

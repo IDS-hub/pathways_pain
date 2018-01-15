@@ -1,4 +1,5 @@
-class Api::V1::AuthProvider::Create < ActiveInteraction::Base
+class Api::V1::AuthProvider::Create < BaseInteraction
+  object :current_user, class: User, default: nil
   string :login
   string :first_name, default: nil 
   string :last_name, default: nil
@@ -17,22 +18,22 @@ class Api::V1::AuthProvider::Create < ActiveInteraction::Base
   def execute
     begin
       send("sign_up_#{provider_info[:provider_name]}")
-    rescue NoMethodError
-      errors.add(:base, I18n.t(
-        'interactions.registrations.wrong_provider',
-        provider_name: provider_info[:provider_name]
-        )
-      )
+    # rescue NoMethodError
+    #   errors.add(:base, I18n.t(
+    #     'interactions.registrations.wrong_provider',
+    #     provider_name: provider_info[:provider_name]
+    #     )
+    #   )
     end
   end
 
   private
 
   def sign_up_facebook
-    is_fb_token_valid = FacebookTokenValidation.call(provider_info[:provider_token])
-
-    if is_fb_token_valid
+    if provider_token_valid?
       update_logging_user!
+      update_user_provider!
+
       logging_user
 
     else
@@ -45,6 +46,35 @@ class Api::V1::AuthProvider::Create < ActiveInteraction::Base
   end
 
   private
+
+  def provider_token_valid?(validate_service = FacebookTokenValidation)
+    is_fb_token_valid = false
+    user_provider_data = logging_user.auth_provider_data('facebook')
+
+    if user_provider_data.present? &&
+      user_provider_data.provider_access_token == provider_info[:provider_token]
+      # if provider present data present check in db first
+      is_fb_token_valid = true
+
+    else
+      if ::UsersAuthProvider.where(provider_access_token: provider_info[:provider_token]).present?
+        is_fb_token_valid = false
+      else
+        is_fb_token_valid = validate_service.call(provider_info[:provider_token])    
+      end
+    end
+
+    is_fb_token_valid
+  end
+
+  def update_user_provider!
+    fb_provider   = ::AuthProvider.find_by(name: 'facebook')
+    user_provider = ::UsersAuthProvider.find_or_create_by(
+      user_id: logging_user.id,
+      auth_provider_id: fb_provider.id
+    )
+    user_provider.update(provider_access_token: provider_info[:provider_token])
+  end
 
   def update_logging_user(user = logging_user)
     user.first_name = first_name if first_name.present?

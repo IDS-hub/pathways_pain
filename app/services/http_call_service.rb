@@ -5,7 +5,7 @@ class HttpCallService
 		def call(uri_string, method: :get)
 			begin
 				send("#{method}_call", uri_string)
-			rescue NameError
+			rescue NoMethodError
 				nil
 			end
 		end

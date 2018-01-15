@@ -9,8 +9,8 @@ class Api::V1::AuthProvidersController < Api::V1::ApplicationController
 		}[!!res.valid?].call
 	end
 
-	def index
-		
+	def show
+		render_response(Api::V1::AuthProvider::Show)
 	end
 
 	private
