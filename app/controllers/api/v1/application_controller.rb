@@ -25,6 +25,10 @@ class Api::V1::ApplicationController < ActionController::Base
     render result
   end
 
+  # todo: add column token_expiried_at
+  # todo: check if not expiries
+  # todo: railse error
+  # todo: rescue if present
   def authenticate_api_user
     return nil if request.headers['Access-Token'].blank?
     @current_user ||= User.find_by(access_token: request.headers['Access-Token'])

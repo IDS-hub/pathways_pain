@@ -3,7 +3,11 @@ class Api::V1::Validate::Show < BaseInteraction
   object :current_user, class: User, default: nil
 
 	def execute
-		payload = ::SecureData.decrypt(confirmation_token)
+		begin
+			payload = ::SecureData.decrypt(confirmation_token)
+		rescue ActiveSupport::MessageVerifier::InvalidSignature
+			return errors.add(:base, "Wrong confirmation token")
+		end
 
 		if payload[:ends_at] < DateTime.now
 			return errors.add(:base, "Confirmation link has been expired")
