@@ -10,7 +10,12 @@ class Api::V1::AuthProvidersController < Api::V1::ApplicationController
 	end
 
 	def show
-		render_response(Api::V1::AuthProvider::Show)
+		render_response(Api::V1::AuthProvider::Show) do |interaction_resp|
+			ActiveModel::Serializer::CollectionSerializer.new(
+				interaction_resp,
+				serializer: Api::V1::UserAuthProviderSerializer
+			).as_json
+		end
 	end
 
 	private

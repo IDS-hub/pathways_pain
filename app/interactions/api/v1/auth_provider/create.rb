@@ -18,12 +18,12 @@ class Api::V1::AuthProvider::Create < BaseInteraction
   def execute
     begin
       send("sign_up_#{provider_info[:provider_name]}")
-    # rescue NoMethodError
-    #   errors.add(:base, I18n.t(
-    #     'interactions.registrations.wrong_provider',
-    #     provider_name: provider_info[:provider_name]
-    #     )
-    #   )
+    rescue NoMethodError
+      errors.add(:base, I18n.t(
+        'interactions.registrations.wrong_provider',
+        provider_name: provider_info[:provider_name]
+        )
+      )
     end
   end
 
