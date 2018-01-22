@@ -1,6 +1,12 @@
 en:
   hello: "Hello world"
   not_found: "Not found"
+  mailers:
+    service_mailer:
+      reset_password_email:
+        subject: You have requested password restore!
+      verify_password_email:
+        subject: Please confirm registration on pathways
   admin_sessions:
     login_success: "Logged in successfully. Welcome!"
     wrong_credentials: "Wrong login credentials. Please try again"

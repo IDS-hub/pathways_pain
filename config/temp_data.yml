@@ -1,0 +1,22 @@
+defaults: &defaults
+  email_login: ssworldmedia@gmail.com
+  email_password: masterss
+  salt: 1c5bb716462f
+  peper: f24ae1b490a1
+
+development:
+  <<: *defaults
+  client_verification_point: http://localhost:3000/api/v1/profile/validates/
+
+test:
+  <<: *defaults
+  client_verification_point: http://localhost:3000/api/v1/profile/validates/
+
+production:
+  <<: *defaults
+  client_verification_point: ''
+
+staging:
+  <<: *defaults
+  client_verification_point: https://pathways.devlits.com/api/v1/profile/validates/
+

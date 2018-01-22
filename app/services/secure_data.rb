@@ -15,11 +15,13 @@ class SecureData
 		private
 
 		def salt
-			Rails.application.secrets.salt
+			# Rails.application.secrets.salt
+			DATA["salt"] # temp, for stagign only
 		end
 
 		def secret
-			Rails.application.secrets.peper
+			# Rails.application.secrets.peper
+			DATA["peper"] # temp, for staging
 		end
 
 		def get_key(salt)
