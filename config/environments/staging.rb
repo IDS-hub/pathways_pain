@@ -55,10 +55,8 @@ Rails.application.configure do
     address:              'smtp.gmail.com',
     port:                 587,
     domain:               'gmail.com',
-    # user_name:            Rails.application.secrets.gmail_user,
-    # password:             Rails.application.secrets.gmail_password,
-    user_name:            DATA['email_login'],
-    password:             DATA['email_password'],
+    user_name:            'pathwaysrelief@gmail.com', # temp
+    password:             'Masterss12!!', # temp
     authentication:       'plain',
     enable_starttls_auto: true
   }
