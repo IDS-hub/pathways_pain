@@ -1,0 +1,419 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>
+  Class: Api::V1::SessionHistoriesController
+  
+    &mdash; Pathways API v1 documentation
+  
+</title>
+
+  <link rel="stylesheet" href="../../css/style.css" type="text/css" charset="utf-8" />
+
+  <link rel="stylesheet" href="../../css/common.css" type="text/css" charset="utf-8" />
+
+  <link rel="stylesheet" href="../../css/custom.css" type="text/css" charset="utf-8" />
+
+<script type="text/javascript" charset="utf-8">
+  hasFrames = window.top.frames.main ? true : false;
+  relpath = '../../';
+  framesUrl = "../../frames.html#!Api/V1/SessionHistoriesController.html";
+</script>
+
+
+  <script type="text/javascript" charset="utf-8" src="../../js/jquery.js"></script>
+
+  <script type="text/javascript" charset="utf-8" src="../../js/app.js"></script>
+
+  <script type="text/javascript" charset="utf-8" src="../../js/rest_plugin.js"></script>
+
+
+  </head>
+  <body>
+    <div id="header">
+      <div id="search">
+  
+    <a class="full_list_link" id="resource_list_link"
+        href="../../resource_list.html">
+      Resources
+    </a>
+  
+    <a class="full_list_link" id="object_list_link"
+        href="../../object_list.html">
+      Objects
+    </a>
+  
+</div>
+    </div>
+
+    <iframe id="search_frame"></iframe>
+
+    <div id="content" style="padding-top: 12px;">
+		<div class="service">
+  <h1 class="noborder title">Pathways API v1 documentation</h1>
+    <a class="back" href="../../index.html" title="back to the overview">&laquo; back to overview</a>
+    <h2>SessionHistories [1.0]</h2>
+    <div class="description">
+  <p>User session history</p>
+
+</div>
+
+
+  <div id="Services" class="method_details_list">
+    
+		<div class="method">
+      <h3>index</h3>
+			<p class="method_desc">Show current user session history</p>
+
+      
+        <div class="resource_url even">
+          <h4>URL</h4>
+          <span class="action">GET</span>
+          <span class="url">api/v1/profile/session_histories</span>
+        </div>
+      
+
+      
+
+
+      
+
+  <div class="parameters odd">
+    
+      <h4>Optional Parameters</h4>
+    
+		<ul>
+  		
+				<li>
+					<span class="name">session_id</span>
+					<span class="type"><tt>Integer</tt></span>
+					<span class="text"><p>Id of selected session</p>
+</span>
+				</li>
+  		
+				<li>
+					<span class="name">pain_cause_id</span>
+					<span class="type"><tt>Integer</tt></span>
+					<span class="text"><p>Id of pain cause</p>
+</span>
+				</li>
+  		
+				<li>
+					<span class="name">sort_order</span>
+					<span class="type"><tt>String</tt></span>
+					<span class="text"><p>Sort order. Allowed: &#39;asc&#39;, &#39;desc&#39;. Default is <em>desc</em></p>
+</span>
+				</li>
+  		
+				<li>
+					<span class="name">is_chart</span>
+					<span class="type"><tt>Any</tt></span>
+					<span class="text"><p>Show short list with minimun fields if param is present</p>
+</span>
+				</li>
+  		
+	  </ul>
+	</div>
+
+
+      
+        
+
+
+      
+      
+
+			
+				<div class="examples">
+					<h4>Examples</h4>
+					
+						<div class="example">
+							
+							
+							
+							<span class="description">
+								
+									
+										Request with all optional params filled for chart
+									
+								
+							</span>
+							<span class="hash request">
+								<strong class="type">Request</strong>
+								
+									
+										<p>GET /api/v1/profile/session_histories?session_id=1&amp;pain_cause_id=37&amp;is_chart=true</p>
+
+<p>Headers</p>
+
+<ul>
+<li>Content-Type:application/json</li>
+<li>Accept:application/json</li>
+<li>Access-Token:accesstoken</li>
+</ul>
+
+									
+								
+							</span>
+							<span class="hash response">
+								<strong class="type">Response</strong>
+								
+									
+										<pre class="code json"><code class="json">  [
+    {
+        &quot;id&quot;: 5,
+        &quot;pain_level&quot;: 3,
+        &quot;created_at&quot;: &quot;2018-01-26T11:04:16.423Z&quot;
+    },
+    {
+        &quot;id&quot;: 4,
+        &quot;pain_level&quot;: 3,
+        &quot;created_at&quot;: &quot;2018-01-26T11:04:09.466Z&quot;
+    }
+  ]
+</code></pre>
+
+									
+								
+							</span>
+							<span class="description">
+								
+									
+										Short list for chart
+									
+								
+							</span>
+						</div>
+					
+				</div>
+			
+		</div>
+    
+		<div class="method">
+      <h3>show</h3>
+			<p class="method_desc">Show given history of current user</p>
+
+      
+        <div class="resource_url even">
+          <h4>URL</h4>
+          <span class="action">GET</span>
+          <span class="url">api/v1/profile/session_histories/:session_history_id</span>
+        </div>
+      
+
+      
+
+  <div class="parameters odd">
+    
+      <h4>Required Parameters</h4>
+    
+		<ul>
+  		
+				<li>
+					<span class="name">session_history_id</span>
+					<span class="type"><tt>Integer</tt></span>
+					<span class="text"><p>Id of given history</p>
+</span>
+				</li>
+  		
+	  </ul>
+	</div>
+
+
+      
+
+
+      
+        
+
+
+      
+      
+
+			
+				<div class="examples">
+					<h4>Examples</h4>
+					
+						<div class="example">
+							
+							
+							
+							<span class="description">
+								
+							</span>
+							<span class="hash request">
+								<strong class="type">Request</strong>
+								
+									
+										<p>GET api/v1/profile/session_histories/1</p>
+
+<p>Headers</p>
+
+<ul>
+<li>Content-Type:application/json</li>
+<li>Accept:application/json</li>
+<li>Access-Token:accesstoken</li>
+</ul>
+
+									
+								
+							</span>
+							<span class="hash response">
+								<strong class="type">Response</strong>
+								
+									
+										<pre class="code json"><code class="json"> {
+   &quot;data&quot;: {
+       &quot;id&quot;: &quot;5&quot;,
+       &quot;type&quot;: &quot;session-history&quot;,
+       &quot;attributes&quot;: {
+           &quot;session-id&quot;: 1,
+           &quot;pain-level&quot;: 3,
+           &quot;created-at&quot;: &quot;2018-01-26T11:04:16.423Z&quot;,
+           &quot;pain-cause-id&quot;: 37,
+           &quot;media-duration-sec&quot;: 120
+       }
+    }
+  }
+</code></pre>
+
+									
+								
+							</span>
+							<span class="description">
+								
+							</span>
+						</div>
+					
+				</div>
+			
+		</div>
+    
+		<div class="method">
+      <h3>create</h3>
+			<p class="method_desc">creates for current_user by default
+Create new entity in user session histories for current user</p>
+
+      
+        <div class="resource_url even">
+          <h4>URL</h4>
+          <span class="action">POST</span>
+          <span class="url">api/v1/profile/session_histories</span>
+        </div>
+      
+
+      
+
+  <div class="parameters odd">
+    
+      <h4>Required Parameters</h4>
+    
+		<ul>
+  		
+				<li>
+					<span class="name">pain_level</span>
+					<span class="type"><tt>Integer</tt></span>
+					<span class="text"><p>Pain level in 1..10</p>
+</span>
+				</li>
+  		
+				<li>
+					<span class="name">session_id</span>
+					<span class="type"><tt>Integer</tt></span>
+					<span class="text"><p>Id of session</p>
+</span>
+				</li>
+  		
+	  </ul>
+	</div>
+
+
+      
+
+
+      
+        
+
+
+      
+      
+
+			
+				<div class="examples">
+					<h4>Examples</h4>
+					
+						<div class="example">
+							
+							
+							
+							<span class="description">
+								
+							</span>
+							<span class="hash request">
+								<strong class="type">Request</strong>
+								
+									
+										<p>Headers:</p>
+
+<ul>
+<li>Content-Type:application/json</li>
+<li>Accept:application/json</li>
+<li>Access-Token:accesstoken</li>
+</ul>
+
+<pre class="code json"><code class="json"> {
+   &quot;pain_level&quot;: 3,
+   &quot;session_id&quot;: 1
+ }
+</code></pre>
+
+									
+								
+							</span>
+							<span class="hash response">
+								<strong class="type">Response</strong>
+								
+									
+										<pre class="code json"><code class="json"> {
+     &quot;data&quot;: {
+         &quot;id&quot;: &quot;6&quot;,
+         &quot;type&quot;: &quot;session-history&quot;,
+         &quot;attributes&quot;: {
+             &quot;session-id&quot;: 1,
+             &quot;pain-level&quot;: 3,
+             &quot;created-at&quot;: &quot;2018-01-26T12:07:09.677Z&quot;,
+             &quot;pain-cause-id&quot;: 37,
+             &quot;media-duration-sec&quot;: 120
+         }
+     }
+ }
+</code></pre>
+
+									
+								
+							</span>
+							<span class="description">
+								
+							</span>
+						</div>
+					
+				</div>
+			
+		</div>
+    
+  </div>
+
+
+</div>
+
+
+	</div>
+
+    <div id="footer">
+  Generated on Fri Jan 26 15:27:56 2018 with ruby-2.4.0
+</div>
+
+  </body>
+</html>

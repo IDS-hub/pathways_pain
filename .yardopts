@@ -1,0 +1,5 @@
+--title "Pathways API v1 documentation"
+--plugin restful
+    --markup markdown
+--exclude app/controllers/api/v1/application_controller.rb
+app/controllers/api/v1/*.rb

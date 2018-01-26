@@ -22,6 +22,7 @@ class Api::V1::Profile::Create < BaseInteraction
     end
 
     if is_skip_verify
+      new_user.update(confirmed_at: DateTime.now)
       return new_user
     else
       payload = {

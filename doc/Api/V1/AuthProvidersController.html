@@ -1,0 +1,280 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>
+  Class: Api::V1::AuthProvidersController
+  
+    &mdash; Pathways API v1 documentation
+  
+</title>
+
+  <link rel="stylesheet" href="../../css/style.css" type="text/css" charset="utf-8" />
+
+  <link rel="stylesheet" href="../../css/common.css" type="text/css" charset="utf-8" />
+
+  <link rel="stylesheet" href="../../css/custom.css" type="text/css" charset="utf-8" />
+
+<script type="text/javascript" charset="utf-8">
+  hasFrames = window.top.frames.main ? true : false;
+  relpath = '../../';
+  framesUrl = "../../frames.html#!Api/V1/AuthProvidersController.html";
+</script>
+
+
+  <script type="text/javascript" charset="utf-8" src="../../js/jquery.js"></script>
+
+  <script type="text/javascript" charset="utf-8" src="../../js/app.js"></script>
+
+  <script type="text/javascript" charset="utf-8" src="../../js/rest_plugin.js"></script>
+
+
+  </head>
+  <body>
+    <div id="header">
+      <div id="search">
+  
+    <a class="full_list_link" id="resource_list_link"
+        href="../../resource_list.html">
+      Resources
+    </a>
+  
+    <a class="full_list_link" id="object_list_link"
+        href="../../object_list.html">
+      Objects
+    </a>
+  
+</div>
+    </div>
+
+    <iframe id="search_frame"></iframe>
+
+    <div id="content" style="padding-top: 12px;">
+		<div class="service">
+  <h1 class="noborder title">Pathways API v1 documentation</h1>
+    <a class="back" href="../../index.html" title="back to the overview">&laquo; back to overview</a>
+    <h2>AuthProviders [1.0]</h2>
+    <div class="description">
+  <p>Third party authorization providers</p>
+
+</div>
+
+
+  <div id="Services" class="method_details_list">
+    
+		<div class="method">
+      <h3>create</h3>
+			<p class="method_desc">Sign in given user by thrid-party provider (e.g. facebook, google etc.)</p>
+
+      
+        <div class="resource_url even">
+          <h4>URL</h4>
+          <span class="action">POST</span>
+          <span class="url">api/v1/auth_providers</span>
+        </div>
+      
+
+      
+
+  <div class="parameters odd">
+    
+      <h4>Required Parameters</h4>
+    
+		<ul>
+  		
+				<li>
+					<span class="name">login</span>
+					<span class="type"><tt>String</tt></span>
+					<span class="text"><p>user login. Usually is email</p>
+</span>
+				</li>
+  		
+				<li>
+					<span class="name">provider_info</span>
+					<span class="type"><tt>Hash</tt></span>
+					<span class="text"><p>provider information data</p>
+</span>
+				</li>
+  		
+	  </ul>
+	</div>
+
+
+      
+
+  <div class="parameters even">
+    
+      <h4>Optional Parameters</h4>
+    
+		<ul>
+  		
+				<li>
+					<span class="name">first_name</span>
+					<span class="type"><tt>String</tt></span>
+					<span class="text"><p>first name of user</p>
+</span>
+				</li>
+  		
+				<li>
+					<span class="name">last_name</span>
+					<span class="type"><tt>String</tt></span>
+					<span class="text"><p>last name of the given user</p>
+</span>
+				</li>
+  		
+	  </ul>
+	</div>
+
+
+      
+        
+
+
+      
+      
+
+			
+				<div class="examples">
+					<h4>Examples</h4>
+					
+						<div class="example">
+							
+							
+							
+							<span class="description">
+								
+									
+										Example for invalid response
+									
+								
+							</span>
+							<span class="hash request">
+								<strong class="type">Request</strong>
+								
+									
+										<pre class="code json"><code class="json">{
+ &quot;first_name&quot;: &quot;Test&quot;,
+ &quot;last_name&quot;: &quot;Fb user&quot;,
+ &quot;login&quot;: &quot;test_login@gmail.com&quot;,
+ &quot;provider_info&quot;: {
+   &quot;provider_name&quot;: &quot;facebook&quot;,
+   &quot;provider_token&quot;: &quot;EAAKdIoryhDxglwSqLCbmc7uxuqEjlM0qYUXPnxPUOlkZCKRUfjZCX4aIZD&quot;
+ }
+}
+</code></pre>
+
+									
+								
+							</span>
+							<span class="hash response">
+								<strong class="type">Response</strong>
+								
+							</span>
+							<span class="description">
+								
+							</span>
+						</div>
+					
+				</div>
+			
+		</div>
+    
+		<div class="method">
+      <h3>show</h3>
+			<p class="method_desc">Show actual providers list for logged in user</p>
+
+      
+        <div class="resource_url odd">
+          <h4>URL</h4>
+          <span class="action">GET</span>
+          <span class="url">api/v1/auth_providers</span>
+        </div>
+      
+
+      
+
+
+      
+
+
+      
+        
+
+
+      
+      
+
+			
+				<div class="examples">
+					<h4>Examples</h4>
+					
+						<div class="example">
+							
+							
+							
+							<span class="description">
+								
+									
+										List of logged in user thrid-party providers
+									
+								
+							</span>
+							<span class="hash request">
+								<strong class="type">Request</strong>
+								
+									
+										<p>Headers</p>
+
+<ul>
+<li>Content-Type:application/json</li>
+<li>Accept:application/json</li>
+<li>Access-Token:accesstoken</li>
+</ul>
+
+									
+								
+							</span>
+							<span class="hash response">
+								<strong class="type">Response</strong>
+								
+									
+										<pre class="code json"><code class="json">[
+  {
+      &quot;id&quot;: 1,
+      &quot;provider_name&quot;: &quot;facebook&quot;,
+      &quot;provider_access_token&quot;: &quot;provideraccesstoken&quot;
+  }
+]
+</code></pre>
+
+									
+								
+							</span>
+							<span class="description">
+								
+									
+										Array of user providers info
+									
+								
+							</span>
+						</div>
+					
+				</div>
+			
+		</div>
+    
+  </div>
+
+
+</div>
+
+
+	</div>
+
+    <div id="footer">
+  Generated on Fri Jan 26 15:27:56 2018 with ruby-2.4.0
+</div>
+
+  </body>
+</html>

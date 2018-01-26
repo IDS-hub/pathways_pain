@@ -1,0 +1,169 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>
+  Class: Api::V1::ValidatesController
+  
+    &mdash; Pathways API v1 documentation
+  
+</title>
+
+  <link rel="stylesheet" href="../../css/style.css" type="text/css" charset="utf-8" />
+
+  <link rel="stylesheet" href="../../css/common.css" type="text/css" charset="utf-8" />
+
+  <link rel="stylesheet" href="../../css/custom.css" type="text/css" charset="utf-8" />
+
+<script type="text/javascript" charset="utf-8">
+  hasFrames = window.top.frames.main ? true : false;
+  relpath = '../../';
+  framesUrl = "../../frames.html#!Api/V1/ValidatesController.html";
+</script>
+
+
+  <script type="text/javascript" charset="utf-8" src="../../js/jquery.js"></script>
+
+  <script type="text/javascript" charset="utf-8" src="../../js/app.js"></script>
+
+  <script type="text/javascript" charset="utf-8" src="../../js/rest_plugin.js"></script>
+
+
+  </head>
+  <body>
+    <div id="header">
+      <div id="search">
+  
+    <a class="full_list_link" id="resource_list_link"
+        href="../../resource_list.html">
+      Resources
+    </a>
+  
+    <a class="full_list_link" id="object_list_link"
+        href="../../object_list.html">
+      Objects
+    </a>
+  
+</div>
+    </div>
+
+    <iframe id="search_frame"></iframe>
+
+    <div id="content" style="padding-top: 12px;">
+		<div class="service">
+  <h1 class="noborder title">Pathways API v1 documentation</h1>
+    <a class="back" href="../../index.html" title="back to the overview">&laquo; back to overview</a>
+    <h2>Validates [1.0]</h2>
+    <div class="description">
+  <p>Validation user token</p>
+
+</div>
+
+
+  <div id="Services" class="method_details_list">
+    
+		<div class="method">
+      <h3>show</h3>
+			<p class="method_desc">Validate user confirmation token. Send via email if at sign up action if _is_skip_verify_ param if _false_</p>
+
+      
+        <div class="resource_url even">
+          <h4>URL</h4>
+          <span class="action">GET</span>
+          <span class="url">api/v1/profile/validates/:confirmation_token</span>
+        </div>
+      
+
+      
+
+  <div class="parameters odd">
+    
+      <h4>Required Parameters</h4>
+    
+		<ul>
+  		
+				<li>
+					<span class="name">confirmation_token</span>
+					<span class="type"><tt>String</tt></span>
+					<span class="text"><p>Registration confirmation token</p>
+</span>
+				</li>
+  		
+	  </ul>
+	</div>
+
+
+      
+
+
+      
+        
+
+
+      
+      
+
+			
+				<div class="examples">
+					<h4>Examples</h4>
+					
+						<div class="example">
+							
+							
+							
+							<span class="description">
+								
+							</span>
+							<span class="hash request">
+								<strong class="type">Request</strong>
+								
+									
+										GET /api/v1/profile/validates/very-long-and-harreadable-token-here23123123123123
+									
+								
+							</span>
+							<span class="hash response">
+								<strong class="type">Response</strong>
+								
+									
+										<pre class="code json"><code class="json">{
+   &quot;id&quot;: 1,
+   &quot;first_name&quot;: &quot;First&quot;,
+   &quot;last_name&quot;: &quot;Last&quot;,
+   &quot;email&quot;: &quot;profile@test.com&quot;,
+   &quot;access_token&quot;: &quot;accesstoken&quot;,
+   &quot;reset_password_token&quot;: null
+ }
+</code></pre>
+
+									
+								
+							</span>
+							<span class="description">
+								
+									
+										In case if confirmation was completed successfully
+									
+								
+							</span>
+						</div>
+					
+				</div>
+			
+		</div>
+    
+  </div>
+
+
+</div>
+
+
+	</div>
+
+    <div id="footer">
+  Generated on Fri Jan 26 15:27:56 2018 with ruby-2.4.0
+</div>
+
+  </body>
+</html>

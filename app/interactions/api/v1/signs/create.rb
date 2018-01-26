@@ -3,7 +3,7 @@ class Api::V1::Signs::Create < ActiveInteraction::Base
   string :password
 
   validate do
-    if logging_user.abscent? && !logging_user.password_valid?(password)
+    if !logging_user.present? && !logging_user&.password_valid?(password)
       errors.add(:user, I18n.t('interactions.signs.wrong_credentials'))
     end
   end
