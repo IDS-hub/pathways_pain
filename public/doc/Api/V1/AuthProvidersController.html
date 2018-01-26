@@ -4,7 +4,7 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title>
-  Class: Api::V1::PasswordsController
+  Class: Api::V1::AuthProvidersController
   
     &mdash; Pathways API v1 documentation
   
@@ -19,7 +19,7 @@
 <script type="text/javascript" charset="utf-8">
   hasFrames = window.top.frames.main ? true : false;
   relpath = '../../';
-  framesUrl = "../../frames.html#!Api/V1/PasswordsController.html";
+  framesUrl = "../../frames.html#!Api/V1/AuthProvidersController.html";
 </script>
 
 
@@ -54,9 +54,9 @@
 		<div class="service">
   <h1 class="noborder title">Pathways API v1 documentation</h1>
     <a class="back" href="../../index.html" title="back to the overview">&laquo; back to overview</a>
-    <h2>Passwords [1.0]</h2>
+    <h2>AuthProviders [1.0]</h2>
     <div class="description">
-  <p>User passwords</p>
+  <p>Third party authorization providers</p>
 
 </div>
 
@@ -64,14 +64,14 @@
   <div id="Services" class="method_details_list">
     
 		<div class="method">
-      <h3>edit</h3>
-			<p class="method_desc">Send email with reset password token for given user</p>
+      <h3>create</h3>
+			<p class="method_desc">Sign in given user by thrid-party provider (e.g. facebook, google etc.)</p>
 
       
         <div class="resource_url even">
           <h4>URL</h4>
-          <span class="action">GET</span>
-          <span class="url">api/v1/password/edit</span>
+          <span class="action">POST</span>
+          <span class="url">api/v1/auth_providers</span>
         </div>
       
 
@@ -84,9 +84,16 @@
 		<ul>
   		
 				<li>
-					<span class="name">email</span>
+					<span class="name">login</span>
 					<span class="type"><tt>String</tt></span>
-					<span class="text"><p>Email of confirmed user</p>
+					<span class="text"><p>user login. Usually is email</p>
+</span>
+				</li>
+  		
+				<li>
+					<span class="name">provider_info</span>
+					<span class="type"><tt>Hash</tt></span>
+					<span class="text"><p>provider information data</p>
 </span>
 				</li>
   		
@@ -95,6 +102,29 @@
 
 
       
+
+  <div class="parameters even">
+    
+      <h4>Optional Parameters</h4>
+    
+		<ul>
+  		
+				<li>
+					<span class="name">first_name</span>
+					<span class="type"><tt>String</tt></span>
+					<span class="text"><p>first name of user</p>
+</span>
+				</li>
+  		
+				<li>
+					<span class="name">last_name</span>
+					<span class="type"><tt>String</tt></span>
+					<span class="text"><p>last name of the given user</p>
+</span>
+				</li>
+  		
+	  </ul>
+	</div>
 
 
       
@@ -114,19 +144,25 @@
 							
 							<span class="description">
 								
+									
+										Example for invalid response
+									
+								
 							</span>
 							<span class="hash request">
 								<strong class="type">Request</strong>
 								
 									
-										<p>GET api/v1/passwords/edit?email=<a href="mailto:test@mail.com">test@mail.com</a></p>
-
-<p>Headers:</p>
-
-<ul>
-<li>Content-Type:application/json</li>
-<li>Accept:application/json</li>
-</ul>
+										<pre class="code json"><code class="json">{
+ &quot;first_name&quot;: &quot;Test&quot;,
+ &quot;last_name&quot;: &quot;Fb user&quot;,
+ &quot;login&quot;: &quot;test_login@gmail.com&quot;,
+ &quot;provider_info&quot;: {
+   &quot;provider_name&quot;: &quot;facebook&quot;,
+   &quot;provider_token&quot;: &quot;EAAKdIoryhDxglwSqLCbmc7uxuqEjlM0qYUXPnxPUOlkZCKRUfjZCX4aIZD&quot;
+ }
+}
+</code></pre>
 
 									
 								
@@ -134,16 +170,8 @@
 							<span class="hash response">
 								<strong class="type">Response</strong>
 								
-									
-										
-									
-								
 							</span>
 							<span class="description">
-								
-									
-										Example valid response is null
-									
 								
 							</span>
 						</div>
@@ -153,34 +181,18 @@
 		</div>
     
 		<div class="method">
-      <h3>update</h3>
-			<p class="method_desc">Returns new access token by reset password token</p>
+      <h3>show</h3>
+			<p class="method_desc">Show actual providers list for logged in user</p>
 
       
-        <div class="resource_url even">
+        <div class="resource_url odd">
           <h4>URL</h4>
-          <span class="action">PATCH</span>
-          <span class="url">api/v1/password</span>
+          <span class="action">GET</span>
+          <span class="url">api/v1/auth_providers</span>
         </div>
       
 
       
-
-  <div class="parameters odd">
-    
-      <h4>Required Parameters</h4>
-    
-		<ul>
-  		
-				<li>
-					<span class="name">reset_password_token</span>
-					<span class="type"><tt>String</tt></span>
-					<span class="text"><p>Reset password token. <strong>query param</strong></p>
-</span>
-				</li>
-  		
-	  </ul>
-	</div>
 
 
       
@@ -203,16 +215,21 @@
 							
 							<span class="description">
 								
+									
+										List of logged in user thrid-party providers
+									
+								
 							</span>
 							<span class="hash request">
 								<strong class="type">Request</strong>
 								
 									
-										<p>Headers:</p>
+										<p>Headers</p>
 
 <ul>
 <li>Content-Type:application/json</li>
 <li>Accept:application/json</li>
+<li>Access-Token:accesstoken</li>
 </ul>
 
 									
@@ -222,14 +239,22 @@
 								<strong class="type">Response</strong>
 								
 									
-										New user token data
+										<pre class="code json"><code class="json">[
+  {
+      &quot;id&quot;: 1,
+      &quot;provider_name&quot;: &quot;facebook&quot;,
+      &quot;provider_access_token&quot;: &quot;provideraccesstoken&quot;
+  }
+]
+</code></pre>
+
 									
 								
 							</span>
 							<span class="description">
 								
 									
-										Valid response
+										Array of user providers info
 									
 								
 							</span>
@@ -248,7 +273,7 @@
 	</div>
 
     <div id="footer">
-  Generated on Fri Jan 26 15:27:56 2018 with ruby-2.4.0
+  Generated on Fri Jan 26 15:49:57 2018 with ruby-2.4.0
 </div>
 
   </body>

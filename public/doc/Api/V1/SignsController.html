@@ -4,7 +4,7 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title>
-  Class: Api::V1::AuthProvidersController
+  Class: Api::V1::SignsController
   
     &mdash; Pathways API v1 documentation
   
@@ -19,7 +19,7 @@
 <script type="text/javascript" charset="utf-8">
   hasFrames = window.top.frames.main ? true : false;
   relpath = '../../';
-  framesUrl = "../../frames.html#!Api/V1/AuthProvidersController.html";
+  framesUrl = "../../frames.html#!Api/V1/SignsController.html";
 </script>
 
 
@@ -54,9 +54,9 @@
 		<div class="service">
   <h1 class="noborder title">Pathways API v1 documentation</h1>
     <a class="back" href="../../index.html" title="back to the overview">&laquo; back to overview</a>
-    <h2>AuthProviders [1.0]</h2>
+    <h2>Signs [1.0]</h2>
     <div class="description">
-  <p>Third party authorization providers</p>
+  <p>Managing access token</p>
 
 </div>
 
@@ -65,13 +65,13 @@
     
 		<div class="method">
       <h3>create</h3>
-			<p class="method_desc">Sign in given user by thrid-party provider (e.g. facebook, google etc.)</p>
+			<p class="method_desc">Get access token depend on user credentials</p>
 
       
         <div class="resource_url even">
           <h4>URL</h4>
           <span class="action">POST</span>
-          <span class="url">api/v1/auth_providers</span>
+          <span class="url">api/v1/sign</span>
         </div>
       
 
@@ -84,16 +84,16 @@
 		<ul>
   		
 				<li>
-					<span class="name">login</span>
+					<span class="name">email</span>
 					<span class="type"><tt>String</tt></span>
-					<span class="text"><p>user login. Usually is email</p>
+					<span class="text"><p>Email of given user</p>
 </span>
 				</li>
   		
 				<li>
-					<span class="name">provider_info</span>
-					<span class="type"><tt>Hash</tt></span>
-					<span class="text"><p>provider information data</p>
+					<span class="name">password</span>
+					<span class="type"><tt>String</tt></span>
+					<span class="text"><p>Password of given user</p>
 </span>
 				</li>
   		
@@ -102,29 +102,6 @@
 
 
       
-
-  <div class="parameters even">
-    
-      <h4>Optional Parameters</h4>
-    
-		<ul>
-  		
-				<li>
-					<span class="name">first_name</span>
-					<span class="type"><tt>String</tt></span>
-					<span class="text"><p>first name of user</p>
-</span>
-				</li>
-  		
-				<li>
-					<span class="name">last_name</span>
-					<span class="type"><tt>String</tt></span>
-					<span class="text"><p>last name of the given user</p>
-</span>
-				</li>
-  		
-	  </ul>
-	</div>
 
 
       
@@ -144,24 +121,27 @@
 							
 							<span class="description">
 								
-									
-										Example for invalid response
-									
-								
 							</span>
 							<span class="hash request">
 								<strong class="type">Request</strong>
 								
 									
-										<pre class="code json"><code class="json">{
- &quot;first_name&quot;: &quot;Test&quot;,
- &quot;last_name&quot;: &quot;Fb user&quot;,
- &quot;login&quot;: &quot;test_login@gmail.com&quot;,
- &quot;provider_info&quot;: {
-   &quot;provider_name&quot;: &quot;facebook&quot;,
-   &quot;provider_token&quot;: &quot;EAAKdIoryhDxglwSqLCbmc7uxuqEjlM0qYUXPnxPUOlkZCKRUfjZCX4aIZD&quot;
+										<p>Headers</p>
+
+<ul>
+<li>Content-Type:application/json</li>
+<li>Accept:application/json</li>
+</ul>
+
+<pre class="code json"><code class="json"> {
+  &quot;data&quot;: {
+    &quot;type&quot;: &quot;users&quot;,
+    &quot;attributes&quot;: { 
+      &quot;email&quot;: &quot;user@test.com&quot;,
+      &quot;password&quot;: &quot;password&quot;
+    }
+  }
  }
-}
 </code></pre>
 
 									
@@ -169,6 +149,20 @@
 							</span>
 							<span class="hash response">
 								<strong class="type">Response</strong>
+								
+									
+										<pre class="code json"><code class="json"> {
+   &quot;data&quot;: {
+       &quot;id&quot;: &quot;4&quot;,
+       &quot;type&quot;: &quot;access-token&quot;,
+       &quot;attributes&quot;: {
+           &quot;access-token&quot;: &quot;e9ccc461a53f&quot;
+       }
+   }
+}
+</code></pre>
+
+									
 								
 							</span>
 							<span class="description">
@@ -181,14 +175,14 @@
 		</div>
     
 		<div class="method">
-      <h3>show</h3>
-			<p class="method_desc">Show actual providers list for logged in user</p>
+      <h3>destroy</h3>
+			<p class="method_desc">Invalidate current user access token</p>
 
       
-        <div class="resource_url odd">
+        <div class="resource_url even">
           <h4>URL</h4>
-          <span class="action">GET</span>
-          <span class="url">api/v1/auth_providers</span>
+          <span class="action">DELETE</span>
+          <span class="url">api/v1/signs</span>
         </div>
       
 
@@ -214,10 +208,6 @@
 							
 							
 							<span class="description">
-								
-									
-										List of logged in user thrid-party providers
-									
 								
 							</span>
 							<span class="hash request">
@@ -239,23 +229,15 @@
 								<strong class="type">Response</strong>
 								
 									
-										<pre class="code json"><code class="json">[
-  {
-      &quot;id&quot;: 1,
-      &quot;provider_name&quot;: &quot;facebook&quot;,
-      &quot;provider_access_token&quot;: &quot;provideraccesstoken&quot;
-  }
-]
+										<pre class="code json"><code class="json"> {
+   &quot;message&quot;: &quot;successfully logged out&quot;
+ }
 </code></pre>
 
 									
 								
 							</span>
 							<span class="description">
-								
-									
-										Array of user providers info
-									
 								
 							</span>
 						</div>
@@ -273,7 +255,7 @@
 	</div>
 
     <div id="footer">
-  Generated on Fri Jan 26 15:27:56 2018 with ruby-2.4.0
+  Generated on Fri Jan 26 15:49:56 2018 with ruby-2.4.0
 </div>
 
   </body>

@@ -4,7 +4,7 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title>
-  Class: Api::V1::PainCausesController
+  Class: Api::V1::QuizesController
   
     &mdash; Pathways API v1 documentation
   
@@ -19,7 +19,7 @@
 <script type="text/javascript" charset="utf-8">
   hasFrames = window.top.frames.main ? true : false;
   relpath = '../../';
-  framesUrl = "../../frames.html#!Api/V1/PainCausesController.html";
+  framesUrl = "../../frames.html#!Api/V1/QuizesController.html";
 </script>
 
 
@@ -54,9 +54,9 @@
 		<div class="service">
   <h1 class="noborder title">Pathways API v1 documentation</h1>
     <a class="back" href="../../index.html" title="back to the overview">&laquo; back to overview</a>
-    <h2>PainCauses [1.0]</h2>
+    <h2>Quizes [1.0]</h2>
     <div class="description">
-  <p>Pain causes</p>
+  <p>Quizez</p>
 
 </div>
 
@@ -65,115 +65,35 @@
     
 		<div class="method">
       <h3>index</h3>
-			<p class="method_desc">Show list of all available pain causes</p>
+			<p class="method_desc">Show list of available quizez for given session</p>
 
       
         <div class="resource_url even">
           <h4>URL</h4>
           <span class="action">GET</span>
-          <span class="url">api/v1/pain_causes</span>
+          <span class="url">api/v1/pain_causes/:pain_cause_id/sessions/:session_id/quizes</span>
         </div>
       
 
       
 
-
-      
-
-
-      
-        
-
-
-      
-      
-
-			
-				<div class="examples">
-					<h4>Examples</h4>
-					
-						<div class="example">
-							
-							
-							
-							<span class="description">
-								
-							</span>
-							<span class="hash request">
-								<strong class="type">Request</strong>
-								
-									
-										<p>Headers</p>
-
-<ul>
-<li>Content-Type:application/json</li>
-<li>Accept:application/json</li>
-<li>Access-Token:accesstoken</li>
-</ul>
-
-									
-								
-							</span>
-							<span class="hash response">
-								<strong class="type">Response</strong>
-								
-									
-										<pre class="code json"><code class="json">{
-&quot;data&quot;: [
-    {
-        &quot;id&quot;: &quot;1&quot;,
-        &quot;type&quot;: &quot;pain-causes&quot;,
-        &quot;attributes&quot;: {
-            &quot;name&quot;: &quot;Arteriosclerosis&quot;
-        }
-    },
-    {
-        &quot;id&quot;: &quot;2&quot;,
-        &quot;type&quot;: &quot;pain-causes&quot;,
-        &quot;attributes&quot;: {
-            &quot;name&quot;: &quot;Arthritis&quot;
-        }
-    }
-  ]
-}
-</code></pre>
-
-									
-								
-							</span>
-							<span class="description">
-								
-							</span>
-						</div>
-					
-				</div>
-			
-		</div>
-    
-		<div class="method">
-      <h3>show</h3>
-			<p class="method_desc">Show separate pain cause description</p>
-
-      
-        <div class="resource_url odd">
-          <h4>URL</h4>
-          <span class="action">GET</span>
-          <span class="url">api/v1/pain_causes/:id</span>
-        </div>
-      
-
-      
-
-  <div class="parameters even">
+  <div class="parameters odd">
     
       <h4>Required Parameters</h4>
     
 		<ul>
   		
 				<li>
-					<span class="name">id</span>
+					<span class="name">pain_cause_id</span>
 					<span class="type"><tt>Integer</tt></span>
 					<span class="text"><p>Id of given pain cause</p>
+</span>
+				</li>
+  		
+				<li>
+					<span class="name">session_id</span>
+					<span class="type"><tt>Integer</tt></span>
+					<span class="text"><p>Id of given session</p>
 </span>
 				</li>
   		
@@ -206,11 +126,13 @@
 								<strong class="type">Request</strong>
 								
 									
-										<p>Headers</p>
+										<p>GET api/v1/pain_causes/1/sessions/2/quizes </p>
+
+<p>Headers:</p>
 
 <ul>
 <li>Content-Type:application/json</li>
-<li>Accept:application/jsonі</li>
+<li>Accept:application/json</li>
 <li>Access-Token:accesstoken</li>
 </ul>
 
@@ -222,14 +144,142 @@
 								
 									
 										<pre class="code json"><code class="json">{
-  &quot;data&quot;: {
-    &quot;id&quot;: &quot;1&quot;,
-    &quot;type&quot;: &quot;pain-causes&quot;,
-    &quot;attributes&quot;: {
-      &quot;name&quot;: &quot;Arteriosclerosis&quot;
-     }
-  }
+  &quot;data&quot;: [
+      {
+          &quot;id&quot;: &quot;2&quot;,
+          &quot;type&quot;: &quot;quiz&quot;,
+          &quot;attributes&quot;: {
+              &quot;question-text&quot;: &quot;Is it possible to cure pain cause without doctors?&quot;,
+              &quot;answer-text&quot;: &quot;Yes, but it is not healthy&quot;,
+              &quot;answer-bool&quot;: true,
+              &quot;position&quot;: 1
+          }
+      },
+      {
+          &quot;id&quot;: &quot;1&quot;,
+          &quot;type&quot;: &quot;quiz&quot;,
+          &quot;attributes&quot;: {
+              &quot;question-text&quot;: &quot;Is it possible to fix pain without doctor help?&quot;,
+              &quot;answer-text&quot;: &quot;t&quot;,
+              &quot;answer-bool&quot;: true,
+              &quot;position&quot;: 2
+          }
+      }
+  ]
 }
+</code></pre>
+
+									
+								
+							</span>
+							<span class="description">
+								
+							</span>
+						</div>
+					
+				</div>
+			
+		</div>
+    
+		<div class="method">
+      <h3>show</h3>
+			<p class="method_desc">Show separate quiz</p>
+
+      
+        <div class="resource_url even">
+          <h4>URL</h4>
+          <span class="action">GET</span>
+          <span class="url">api/v1/pain_causes/:pain_cause_id/sessions/:session_id/quizes/:quiz_id</span>
+        </div>
+      
+
+      
+
+  <div class="parameters odd">
+    
+      <h4>Required Parameters</h4>
+    
+		<ul>
+  		
+				<li>
+					<span class="name">pain_cause_id</span>
+					<span class="type"><tt>Integer</tt></span>
+					<span class="text"><p>Id of given pain cause</p>
+</span>
+				</li>
+  		
+				<li>
+					<span class="name">session_id</span>
+					<span class="type"><tt>Integer</tt></span>
+					<span class="text"><p>Id of given session</p>
+</span>
+				</li>
+  		
+				<li>
+					<span class="name">quiz_id</span>
+					<span class="type"><tt>Integer</tt></span>
+					<span class="text"><p>Id of the given quiz</p>
+</span>
+				</li>
+  		
+	  </ul>
+	</div>
+
+
+      
+
+
+      
+        
+
+
+      
+      
+
+			
+				<div class="examples">
+					<h4>Examples</h4>
+					
+						<div class="example">
+							
+							
+							
+							<span class="description">
+								
+							</span>
+							<span class="hash request">
+								<strong class="type">Request</strong>
+								
+									
+										<p>GET api/v1/pain_causes/1/sessions/2/quizes/3</p>
+
+<p>Headers:</p>
+
+<ul>
+<li>Content-Type:application/json</li>
+<li>Accept:application/json</li>
+<li>Access-Token:accesstoken</li>
+</ul>
+
+									
+								
+							</span>
+							<span class="hash response">
+								<strong class="type">Response</strong>
+								
+									
+										<pre class="code json"><code class="json">{
+  &quot;data&quot;: [
+      {
+          &quot;id&quot;: &quot;2&quot;,
+          &quot;type&quot;: &quot;quiz&quot;,
+          &quot;attributes&quot;: {
+              &quot;question-text&quot;: &quot;Is it possible to cure pain cause without doctors?&quot;,
+              &quot;answer-text&quot;: &quot;Yes, but it is not healthy&quot;,
+              &quot;answer-bool&quot;: true,
+              &quot;position&quot;: 1
+          }
+      }
 </code></pre>
 
 									
@@ -253,7 +303,7 @@
 	</div>
 
     <div id="footer">
-  Generated on Fri Jan 26 15:27:56 2018 with ruby-2.4.0
+  Generated on Fri Jan 26 15:49:57 2018 with ruby-2.4.0
 </div>
 
   </body>

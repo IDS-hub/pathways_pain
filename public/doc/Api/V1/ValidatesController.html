@@ -4,7 +4,7 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title>
-  Class: Api::V1::SignsController
+  Class: Api::V1::ValidatesController
   
     &mdash; Pathways API v1 documentation
   
@@ -19,7 +19,7 @@
 <script type="text/javascript" charset="utf-8">
   hasFrames = window.top.frames.main ? true : false;
   relpath = '../../';
-  framesUrl = "../../frames.html#!Api/V1/SignsController.html";
+  framesUrl = "../../frames.html#!Api/V1/ValidatesController.html";
 </script>
 
 
@@ -54,9 +54,9 @@
 		<div class="service">
   <h1 class="noborder title">Pathways API v1 documentation</h1>
     <a class="back" href="../../index.html" title="back to the overview">&laquo; back to overview</a>
-    <h2>Signs [1.0]</h2>
+    <h2>Validates [1.0]</h2>
     <div class="description">
-  <p>Managing access token</p>
+  <p>Validation user token</p>
 
 </div>
 
@@ -64,14 +64,14 @@
   <div id="Services" class="method_details_list">
     
 		<div class="method">
-      <h3>create</h3>
-			<p class="method_desc">Get access token depend on user credentials</p>
+      <h3>show</h3>
+			<p class="method_desc">Validate user confirmation token. Send via email if at sign up action if _is_skip_verify_ param if _false_</p>
 
       
         <div class="resource_url even">
           <h4>URL</h4>
-          <span class="action">POST</span>
-          <span class="url">api/v1/sign</span>
+          <span class="action">GET</span>
+          <span class="url">api/v1/profile/validates/:confirmation_token</span>
         </div>
       
 
@@ -84,16 +84,9 @@
 		<ul>
   		
 				<li>
-					<span class="name">email</span>
+					<span class="name">confirmation_token</span>
 					<span class="type"><tt>String</tt></span>
-					<span class="text"><p>Email of given user</p>
-</span>
-				</li>
-  		
-				<li>
-					<span class="name">password</span>
-					<span class="type"><tt>String</tt></span>
-					<span class="text"><p>Password of given user</p>
+					<span class="text"><p>Registration confirmation token</p>
 </span>
 				</li>
   		
@@ -126,24 +119,7 @@
 								<strong class="type">Request</strong>
 								
 									
-										<p>Headers</p>
-
-<ul>
-<li>Content-Type:application/json</li>
-<li>Accept:application/json</li>
-</ul>
-
-<pre class="code json"><code class="json"> {
-  &quot;data&quot;: {
-    &quot;type&quot;: &quot;users&quot;,
-    &quot;attributes&quot;: { 
-      &quot;email&quot;: &quot;user@test.com&quot;,
-      &quot;password&quot;: &quot;password&quot;
-    }
-  }
- }
-</code></pre>
-
+										GET /api/v1/profile/validates/very-long-and-harreadable-token-here23123123123123
 									
 								
 							</span>
@@ -151,86 +127,13 @@
 								<strong class="type">Response</strong>
 								
 									
-										<pre class="code json"><code class="json"> {
-   &quot;data&quot;: {
-       &quot;id&quot;: &quot;4&quot;,
-       &quot;type&quot;: &quot;access-token&quot;,
-       &quot;attributes&quot;: {
-           &quot;access-token&quot;: &quot;e9ccc461a53f&quot;
-       }
-   }
-}
-</code></pre>
-
-									
-								
-							</span>
-							<span class="description">
-								
-							</span>
-						</div>
-					
-				</div>
-			
-		</div>
-    
-		<div class="method">
-      <h3>destroy</h3>
-			<p class="method_desc">Invalidate current user access token</p>
-
-      
-        <div class="resource_url even">
-          <h4>URL</h4>
-          <span class="action">DELETE</span>
-          <span class="url">api/v1/signs</span>
-        </div>
-      
-
-      
-
-
-      
-
-
-      
-        
-
-
-      
-      
-
-			
-				<div class="examples">
-					<h4>Examples</h4>
-					
-						<div class="example">
-							
-							
-							
-							<span class="description">
-								
-							</span>
-							<span class="hash request">
-								<strong class="type">Request</strong>
-								
-									
-										<p>Headers</p>
-
-<ul>
-<li>Content-Type:application/json</li>
-<li>Accept:application/json</li>
-<li>Access-Token:accesstoken</li>
-</ul>
-
-									
-								
-							</span>
-							<span class="hash response">
-								<strong class="type">Response</strong>
-								
-									
-										<pre class="code json"><code class="json"> {
-   &quot;message&quot;: &quot;successfully logged out&quot;
+										<pre class="code json"><code class="json">{
+   &quot;id&quot;: 1,
+   &quot;first_name&quot;: &quot;First&quot;,
+   &quot;last_name&quot;: &quot;Last&quot;,
+   &quot;email&quot;: &quot;profile@test.com&quot;,
+   &quot;access_token&quot;: &quot;accesstoken&quot;,
+   &quot;reset_password_token&quot;: null
  }
 </code></pre>
 
@@ -238,6 +141,10 @@
 								
 							</span>
 							<span class="description">
+								
+									
+										In case if confirmation was completed successfully
+									
 								
 							</span>
 						</div>
@@ -255,7 +162,7 @@
 	</div>
 
     <div id="footer">
-  Generated on Fri Jan 26 15:27:56 2018 with ruby-2.4.0
+  Generated on Fri Jan 26 15:49:57 2018 with ruby-2.4.0
 </div>
 
   </body>

@@ -4,7 +4,7 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title>
-  Class: Api::V1::QuizesController
+  Class: Api::V1::SessionsController
   
     &mdash; Pathways API v1 documentation
   
@@ -19,7 +19,7 @@
 <script type="text/javascript" charset="utf-8">
   hasFrames = window.top.frames.main ? true : false;
   relpath = '../../';
-  framesUrl = "../../frames.html#!Api/V1/QuizesController.html";
+  framesUrl = "../../frames.html#!Api/V1/SessionsController.html";
 </script>
 
 
@@ -54,9 +54,9 @@
 		<div class="service">
   <h1 class="noborder title">Pathways API v1 documentation</h1>
     <a class="back" href="../../index.html" title="back to the overview">&laquo; back to overview</a>
-    <h2>Quizes [1.0]</h2>
+    <h2>Sessions [1.0]</h2>
     <div class="description">
-  <p>Quizez</p>
+  <p>User sessions</p>
 
 </div>
 
@@ -65,13 +65,15 @@
     
 		<div class="method">
       <h3>index</h3>
-			<p class="method_desc">Show list of available quizez for given session</p>
+			<p class="method_desc">Show list of available sessions
+
+* _feel_good_ - where session history of given pain cause between 0 and 1</p>
 
       
         <div class="resource_url even">
           <h4>URL</h4>
           <span class="action">GET</span>
-          <span class="url">api/v1/pain_causes/:pain_cause_id/sessions/:session_id/quizes</span>
+          <span class="url">/api/v1/pain_causes/:pain_cause_id/sessions</span>
         </div>
       
 
@@ -86,14 +88,7 @@
 				<li>
 					<span class="name">pain_cause_id</span>
 					<span class="type"><tt>Integer</tt></span>
-					<span class="text"><p>Id of given pain cause</p>
-</span>
-				</li>
-  		
-				<li>
-					<span class="name">session_id</span>
-					<span class="type"><tt>Integer</tt></span>
-					<span class="text"><p>Id of given session</p>
+					<span class="text"><p>Id of pain cause</p>
 </span>
 				</li>
   		
@@ -102,6 +97,22 @@
 
 
       
+
+  <div class="parameters even">
+    
+      <h4>Optional Parameters</h4>
+    
+		<ul>
+  		
+				<li>
+					<span class="name">session_type</span>
+					<span class="type"><tt>String</tt></span>
+					<span class="text"><p>Type of session. Avalilable:</p>
+</span>
+				</li>
+  		
+	  </ul>
+	</div>
 
 
       
@@ -126,9 +137,9 @@
 								<strong class="type">Request</strong>
 								
 									
-										<p>GET api/v1/pain_causes/1/sessions/2/quizes </p>
+										<p>GET  /api/v1/pain_causes/12/sessions?session_type=feel_good</p>
 
-<p>Headers:</p>
+<p>Headers</p>
 
 <ul>
 <li>Content-Type:application/json</li>
@@ -146,23 +157,15 @@
 										<pre class="code json"><code class="json">{
   &quot;data&quot;: [
       {
-          &quot;id&quot;: &quot;2&quot;,
-          &quot;type&quot;: &quot;quiz&quot;,
-          &quot;attributes&quot;: {
-              &quot;question-text&quot;: &quot;Is it possible to cure pain cause without doctors?&quot;,
-              &quot;answer-text&quot;: &quot;Yes, but it is not healthy&quot;,
-              &quot;answer-bool&quot;: true,
-              &quot;position&quot;: 1
-          }
-      },
-      {
           &quot;id&quot;: &quot;1&quot;,
-          &quot;type&quot;: &quot;quiz&quot;,
+          &quot;type&quot;: &quot;sessions&quot;,
           &quot;attributes&quot;: {
-              &quot;question-text&quot;: &quot;Is it possible to fix pain without doctor help?&quot;,
-              &quot;answer-text&quot;: &quot;t&quot;,
-              &quot;answer-bool&quot;: true,
-              &quot;position&quot;: 2
+              &quot;name&quot;: &quot;test session&quot;,
+              &quot;session-text&quot;: null,
+              &quot;position&quot;: 1,
+              &quot;media-duration-sec&quot;: 120,
+              &quot;media-link&quot;: &quot;path/to/audio/file.mp3&quot;,
+              &quot;pain-cause-id&quot;: 37
           }
       }
   ]
@@ -183,19 +186,19 @@
     
 		<div class="method">
       <h3>show</h3>
-			<p class="method_desc">Show separate quiz</p>
+			<p class="method_desc">Show given session</p>
 
       
-        <div class="resource_url even">
+        <div class="resource_url odd">
           <h4>URL</h4>
           <span class="action">GET</span>
-          <span class="url">api/v1/pain_causes/:pain_cause_id/sessions/:session_id/quizes/:quiz_id</span>
+          <span class="url">/api/v1/pain_causes/:pain_cause_id/sessions/:session_id</span>
         </div>
       
 
       
 
-  <div class="parameters odd">
+  <div class="parameters even">
     
       <h4>Required Parameters</h4>
     
@@ -204,7 +207,7 @@
 				<li>
 					<span class="name">pain_cause_id</span>
 					<span class="type"><tt>Integer</tt></span>
-					<span class="text"><p>Id of given pain cause</p>
+					<span class="text"><p>Id of pain cause</p>
 </span>
 				</li>
   		
@@ -212,13 +215,6 @@
 					<span class="name">session_id</span>
 					<span class="type"><tt>Integer</tt></span>
 					<span class="text"><p>Id of given session</p>
-</span>
-				</li>
-  		
-				<li>
-					<span class="name">quiz_id</span>
-					<span class="type"><tt>Integer</tt></span>
-					<span class="text"><p>Id of the given quiz</p>
 </span>
 				</li>
   		
@@ -251,9 +247,9 @@
 								<strong class="type">Request</strong>
 								
 									
-										<p>GET api/v1/pain_causes/1/sessions/2/quizes/3</p>
+										<p>GET  /api/v1/pain_causes/12/sessions/3</p>
 
-<p>Headers:</p>
+<p>Headers</p>
 
 <ul>
 <li>Content-Type:application/json</li>
@@ -269,17 +265,20 @@
 								
 									
 										<pre class="code json"><code class="json">{
-  &quot;data&quot;: [
+  &quot;data&quot;:
       {
-          &quot;id&quot;: &quot;2&quot;,
-          &quot;type&quot;: &quot;quiz&quot;,
+          &quot;id&quot;: &quot;1&quot;,
+          &quot;type&quot;: &quot;sessions&quot;,
           &quot;attributes&quot;: {
-              &quot;question-text&quot;: &quot;Is it possible to cure pain cause without doctors?&quot;,
-              &quot;answer-text&quot;: &quot;Yes, but it is not healthy&quot;,
-              &quot;answer-bool&quot;: true,
-              &quot;position&quot;: 1
+              &quot;name&quot;: &quot;test session&quot;,
+              &quot;session-text&quot;: null,
+              &quot;position&quot;: 1,
+              &quot;media-duration-sec&quot;: 120,
+              &quot;media-link&quot;: &quot;path/to/audio/file.mp3&quot;,
+              &quot;pain-cause-id&quot;: 37
           }
       }
+}
 </code></pre>
 
 									
@@ -303,7 +302,7 @@
 	</div>
 
     <div id="footer">
-  Generated on Fri Jan 26 15:27:56 2018 with ruby-2.4.0
+  Generated on Fri Jan 26 15:49:57 2018 with ruby-2.4.0
 </div>
 
   </body>
