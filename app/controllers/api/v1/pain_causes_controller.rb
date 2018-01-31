@@ -6,6 +6,8 @@ class Api::V1::PainCausesController < Api::V1::ApplicationController
   # @action GET
   #
   # Show list of all available pain causes
+  # 
+  # @optional [Any] is_short Show array with names only
   #
   # @example_request
   #   Headers
@@ -35,11 +37,11 @@ class Api::V1::PainCausesController < Api::V1::ApplicationController
   #   }
   #   ```
   def index
-    render_response(
-      Api::V1::PainCause::Index,
-      {},
-      { serializer: Api::V1::PainCauseSerializer }
-    )
+    render_response(Api::V1::PainCause::Index) do |interaction_res|
+      if params[:is_short]
+        interaction_res.map(&:name).to_json
+      end
+    end
   end
 
   # @url api/v1/pain_causes/:id
