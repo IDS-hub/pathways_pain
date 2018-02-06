@@ -7,4 +7,5 @@ class SessionHistory < ApplicationRecord
 
   delegate :pain_cause_id, to: :session
   delegate :media_duration_sec, to: :session
+  delegate :name, to: :session, prefix: :session
 end

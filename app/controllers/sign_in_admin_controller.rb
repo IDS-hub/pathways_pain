@@ -6,7 +6,7 @@ class SignInAdminController < ApplicationController
 
 	# todo: to interaction or service
 	def create
-		@admin_user = AdminUser.find_by(login: params[:login])
+		@admin_user = AdminUser.find_by(login: params[:login]&.strip)
 
 		if @admin_user && @admin_user.password_valid?(params[:password])
 			session_params = {
